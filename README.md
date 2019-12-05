@@ -18,3 +18,7 @@ Upload/download content
 Comment  
 Recommendation system  
 ...  
+
+
+## Launch Django
+```py manage.py runserver```

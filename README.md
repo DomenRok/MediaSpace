@@ -21,4 +21,12 @@ Recommendation system
 
 
 ## Launch Django
-```py manage.py runserver```
+```py manage.py runserver```  
+  
+## REST-api
+Examples:  
+```python
+ http://127.0.0.1:8000/api/v1/users/
+ http://127.0.0.1:8000/api/v1/rest-auth/login/
+ http://127.0.0.1:8000/api/v1/rest-auth/logout/
+ ```

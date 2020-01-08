@@ -37,7 +37,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
+    'api',
+    'content',
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+    'rest_framework.authtoken',
+    'rest_framework',
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SITE_ID = 1
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,8 +91,12 @@ WSGI_APPLICATION = 'MediaSpace.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'MediaSpace',
+        'HOST': '86.61.77.35',
+        'USER': 'tguda',
+        'PASSWORD': '0xoEb0*&rBmH',
+        'PORT': '3306'
     }
 }
 

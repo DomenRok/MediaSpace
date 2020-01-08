@@ -14,7 +14,7 @@ CREATE TABLE `Users`
 (
   `id` Int NOT NULL,
   `email` Char(40) NOT NULL,
-  `password` Char(256) NOT NULL,
+  `password` Char(255) NOT NULL,
   `date_of_birth` Date NOT NULL,
   `subscription_id` Int,
   `user_status` Int NOT NULL,
@@ -91,6 +91,7 @@ CREATE TABLE `Content`
   `content_path` Char(200) NOT NULL,
   `contentGenre_id` Int,
   `rating` Float,
+  `tag` Char(200),
   `uploadingUser_id` Int
 )
 ;

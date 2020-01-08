@@ -90,8 +90,12 @@ WSGI_APPLICATION = 'MediaSpace.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'MediaSpace',
+        'HOST': '86.61.77.35',
+        'USER': 'tguda',
+        'PASSWORD': '0xoEb0*&rBmH',
+        'PORT': '3306'
     }
 }
 

@@ -2,7 +2,7 @@ import pandas as pd
 from .models import CustomUser, Movie, Rating
 
 
-class RecomendationService:
+class DataUtils:
     @staticmethod
     def create_matrix():
         pass

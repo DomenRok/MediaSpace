@@ -8,8 +8,8 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class MovieList(generics.ListAPIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #permission_classes = [IsAuthenticated]
 
     queryset = models.Movie.objects.all()
     serializer_class = serializers.MovieSerializer

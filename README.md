@@ -19,6 +19,31 @@ Comment
 Recommendation system  
 ...  
 
+## Requirements
+
+```powershell
+(pyenv) PS C:\Users\Domen Brunček\Desktop\FRI\MediaSpace-folder\MediaSpace\MediaSpace> ls
+
+
+    Path: ..\Path\To\Project\MediaSpace-folder\MediaSpace\MediaSpace
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----      8. 01. 2020     12:57                api
+d-----      9. 01. 2020     12:24                content
+d-----      9. 01. 2020     09:40                MediaSpace
+d-----      9. 01. 2020     11:53                recomendations
+d-----      8. 01. 2020     13:01                users
+-a----      5. 12. 2019     15:45              6 .gitignore
+-a----      5. 12. 2019     14:03            651 manage.py
+-a----      8. 01. 2020     09:54             61 requirements.txt
+-a----      8. 01. 2020     09:54              0 __init__.py
+```
+
+```python
+pip install -r requirements.txt
+```
 
 ## Launch Django
 ```py manage.py runserver```  

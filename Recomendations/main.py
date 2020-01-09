@@ -10,5 +10,3 @@ def favouriteMovies(user, df):
     rec_items = rec.recommend(user, 50, False)
 
     return rec_items.keys()
-
-

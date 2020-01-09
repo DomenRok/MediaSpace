@@ -12,7 +12,7 @@ class Genre(models.Model):
 class Movie(models.Model):
     title = models.CharField(max_length=150)
     description = models.CharField(max_length=150, null=True, blank=True)
-    link = models.URLField()
+    link = models.URLField(null=True, blank=True)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, blank=True, null=True)
     users = models.ManyToManyField(CustomUser, through='Rating')
     imdb_id = models.IntegerField(unique=True, blank=True, null=True)

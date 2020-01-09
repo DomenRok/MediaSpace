@@ -24,5 +24,5 @@ class Rating(models.Model):
     )
 
     person = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    group = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    date_joined = models.DateField(blank=True)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    date_rated = models.DateField(blank=True)

@@ -29,4 +29,6 @@ Examples:
  http://127.0.0.1:8000/api/v1/users/
  http://127.0.0.1:8000/api/v1/rest-auth/login/
  http://127.0.0.1:8000/api/v1/rest-auth/logout/
+ http://127.0.0.1:8000/api/v1/content/
+ http://127.0.0.1:8000/api/v1/users/
  ```

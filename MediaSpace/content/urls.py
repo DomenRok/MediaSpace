@@ -2,15 +2,15 @@ from django.urls import include, path
 
 from . import views
 from rest_framework.urlpatterns import format_suffix_patterns
-
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
-    path('movie', views.MovieList.as_view()),
-    path('movie/<int:pk>', views.MovieDetail.as_view()),
-    path('movie/create', views.MovieCreate.as_view()),
-    path('rating', views.RatingList.as_view()),
-    path('rating/<int:pk>', views.RatingDetail.as_view()),
-    path('rating/create', views.RatingCreate.as_view())
+    path('movie', csrf_exempt(views.MovieList.as_view())),
+    path('movie/<int:pk>', csrf_exempt(views.MovieDetail.as_view())),
+    path('movie/create', csrf_exempt(views.MovieCreate.as_view())),
+    path('rating', csrf_exempt(views.RatingList.as_view())),
+    path('rating/<int:pk>', csrf_exempt(views.RatingDetail.as_view())),
+    path('rating/create', csrf_exempt(views.RatingCreate.as_view()))
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

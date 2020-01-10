@@ -1,4 +1,6 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import MediaAPIClient, {createCookie} from "../Api/MediaAPIClient";
+import $ from "jquery";
 
 interface Props {
     loggedIn: boolean,
@@ -12,7 +14,12 @@ interface IUser {
 
 export const Modal: React.FC<Props> = (props) => {
     const [formDetails, setFormDetails] = useState<IUser>({username: "", password: ""});
-    //const [showModal, setShowModal] = useState<boolean>(props.loggedIn);
+    const [showModal, setShowModal] = useState<boolean>(true);
+
+    useEffect(() => {
+        setShowModal(!props.loggedIn);
+    }, [props.loggedIn]);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const {name, value} = e.target;
         setFormDetails(prevState => ({
@@ -23,16 +30,21 @@ export const Modal: React.FC<Props> = (props) => {
     };
 
     const signIn = (e: React.MouseEvent<HTMLElement>) => {
-        props.signIn(true);
-        //setShowModal(prevState => !prevState);
-    };
+        //new MediaAPIClient().login(formDetails).then((resp) => {
+            //if (resp === 1) {
+                props.signIn(true);
+                $('#LoginModal').modal('hide');
+                //$('#errorForm').toggle();
 
-    const modalShow = {
-        display: !props.loggedIn as any
+                $('.modal-backdrop').remove();
+           // } else {
+           //     $('#errorForm').toggle();
+         //   }
+        //});
     };
 
     return (
-        <div style={modalShow} className="modal fade" id="LoginModal" tabIndex={-1} role="dialog" aria-labelledby="LoginModal"
+        <div className="modal fade" id="LoginModal" tabIndex={-1} role="dialog" aria-labelledby="LoginModal"
              aria-hidden="true">
             <button type="button" className="close float-close-pro" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -59,6 +71,9 @@ export const Modal: React.FC<Props> = (props) => {
                                            className="form-control"
                                            id="password"
                                            placeholder="Password" onChange={handleChange}/>
+                                </div>
+                                <div className="errorForm" style={{display: "none"}}>
+                                    Error with signing in.
                                 </div>
                                 <div className="form-group">
                                     <button type="button"

@@ -6,11 +6,7 @@ import {Footer} from "../Components/Footer";
 import {Modal} from "../Components/Modal";
 
 
-interface Props {
-    loggedIn: boolean
-}
-
-export const Dashboard: React.FC<Props> = (props) => {
+export const Dashboard: React.FC = (props) => {
     const slider = {
         title: "Film",
         bgImage: "https://cdn.hipwallpaper.com/i/96/4/ecEQiJ.jpeg",
@@ -23,8 +19,8 @@ export const Dashboard: React.FC<Props> = (props) => {
     } as Slider;
     var sliders = [slider];
     return (
-        <div id={props.loggedIn ? "sidebar-bg" : ""}>
-            <Header loggedIn={props.loggedIn}/>
+        <div id="sidebar-bg">
+            <Header loggedIn={true}/>
             <FlexSlider slides={sliders}/>
         </div>
     );

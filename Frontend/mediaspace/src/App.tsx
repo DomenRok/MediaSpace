@@ -26,7 +26,7 @@ const App: React.FC = (props):any => {
     return (
         <HashRouter>
             <Route path="/" render={(props) => <Home {...props} signIn={signIn}/>}/>
-            <Route path="/browse/:id?" render={() => <Dashboard loggedIn={isloggedIn}/>}/>
+            isloggedIn && <Route path="/browse/:id?" render={() => <Dashboard/>}/>
         </HashRouter>
     );
 

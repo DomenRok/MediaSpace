@@ -18,7 +18,7 @@ class Movie(models.Model):
     link = models.URLField(null=True, blank=True)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, blank=True, null=True)
     users = models.ManyToManyField(CustomUser, through='Rating')
-    imdb_id = models.IntegerField(unique=True, blank=True, null=True)
+    imdb_id = models.IntegerField(blank=True, null=True)
     thumbnail_url = models.URLField(blank=True, null=True)
 
 

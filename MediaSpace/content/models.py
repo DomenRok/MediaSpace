@@ -8,6 +8,9 @@ from users.models import CustomUser
 class Genre(models.Model):
     name = models.CharField(max_length=150)
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Movie(models.Model):
     title = models.CharField(max_length=150)
@@ -27,4 +30,4 @@ class Rating(models.Model):
 
     person = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    date_rated = models.DateField(blank=True)
+    date_rated = models.DateTimeField(blank=True)

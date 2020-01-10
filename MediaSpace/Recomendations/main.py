@@ -4,7 +4,7 @@ import random
 
 
 class RecomendationService:
-    def favouriteMovies(user):
+    def favouriteMovies(self, user):
         df = DataUtils.return_dataframe()
         uid = Recommend.UserItemData(df, 1000)
         preds = [SlopOne_Predictor.SlopOnePredictor]#, Cosine_Predictor.CosinePredictor]
@@ -13,8 +13,5 @@ class RecomendationService:
         rec.fit(uid)
         rec_items = rec.recommend(user, 50, False)
         return rec_items.keys()
-
-
-rs = RecomendationService.favouriteMovies(3)
 
 

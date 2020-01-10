@@ -20,7 +20,7 @@ class MovieDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
 
     queryset = models.Movie.objects.all()
-    serializer_class = serializers.MovieSerializer
+    serializer_class = serializers.MovieWithCommentsSerializer
 
 
 class MovieCreate(generics.CreateAPIView):

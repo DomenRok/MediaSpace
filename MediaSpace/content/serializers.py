@@ -6,4 +6,4 @@ from . import models
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Movie
-        fields = ('title', 'description', 'link', 'id')
+        fields = ('title', 'description', 'link', 'id', 'genre', 'imdb_id', 'thumbnail_url')

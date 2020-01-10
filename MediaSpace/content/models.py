@@ -8,14 +8,17 @@ from users.models import CustomUser
 class Genre(models.Model):
     name = models.CharField(max_length=150)
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Movie(models.Model):
     title = models.CharField(max_length=150)
-    description = models.CharField(max_length=150)
-    link = models.URLField()
+    description = models.CharField(max_length=150, null=True, blank=True)
+    link = models.URLField(null=True, blank=True)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, blank=True, null=True)
     users = models.ManyToManyField(CustomUser, through='Rating')
-    imdb_id = models.IntegerField(unique=True, blank=True, null=True)
+    imdb_id = models.IntegerField(blank=True, null=True)
     thumbnail_url = models.URLField(blank=True, null=True)
 
 
@@ -27,4 +30,4 @@ class Rating(models.Model):
 
     person = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    date_rated = models.DateField(blank=True)
+    date_rated = models.DateTimeField(blank=True)

@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
+import Afterglow from "./Player/Afterglow";
 
 export interface Slider {
     id: Number;
@@ -18,6 +19,8 @@ interface Props {
 
 export const DashBoardSlider = (props: Props) => {
     useEffect(() => {
+        (window as any).afterglow = new Afterglow();
+        (window as any).afterglow.init();
         $('.progression-studios-dashboard-slider').flexslider({
             slideshow: false,  		/* Autoplay True/False */
             slideshowSpeed: 8000,	/* Autoplay Speed */
@@ -65,7 +68,7 @@ export const DashBoardSlider = (props: Props) => {
         } else {
             if (slide.video.includes("youtube")) {
                 return (
-                    <video id={"VideoLightbox-" + slide.id} className="afterglow-lightboxplayer" width="960" height="540"
+                    <video id={"VideoLightbox-" + slide.id} width="960" height="540"
                            data-youtube-id={getId(slide.video)}></video>
                 )
             }

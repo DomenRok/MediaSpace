@@ -23,15 +23,11 @@ const App: React.FC = (props):any => {
     //{(window.location.pathname === "" && isloggedIn) && <Redirect from='/' to="/browse" />}
     //{(window.location.pathname === "" && !isloggedIn) && <Route path="/" render={(props) => <Home {...props} signIn={signIn}/>}/>}
     //<Route path="/browse/:id?" render={() => <Dashboard/>}/>
-    console.log(isloggedIn);
+    console.log(isloggedIn,"root");
     return (
         <HashRouter>
             <Route path="/" render={(props) => <Home {...props} signIn={signIn} loggedIn={isloggedIn}/>}/>
-            {isloggedIn ?
-                <Route path="/browse/:id?" render={() => <Dashboard/>}/> :
-                <Redirect from="/browse" to="/"/>
-            }
-
+            <Route path="/browse/:id?" render={() => <Dashboard loggedIn={isloggedIn}/>}/>
         </HashRouter>
     );
 

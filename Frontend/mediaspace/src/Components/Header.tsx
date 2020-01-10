@@ -7,6 +7,7 @@ interface Props {
 }
 
 const Header: React.FC<Props> = (props) => {
+    console.log(props.loggedIn);
     if (!props.loggedIn) {
         return (
             <header id="masthead-pro">

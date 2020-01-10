@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 
 export interface Slider {
@@ -16,7 +16,27 @@ interface Props {
     slides: Array<Slider>; // we can have arbitry number of slides
 }
 
-export const FlexSlider = (props: Props) => {
+export const DashBoardSlider = (props: Props) => {
+    useEffect(() => {
+        $('.progression-studios-dashboard-slider').flexslider({
+            slideshow: false,  		/* Autoplay True/False */
+            slideshowSpeed: 8000,	/* Autoplay Speed */
+            animation: "fade",		/* Slideshow Transition Animation */
+            animationSpeed: 800, 	/* Slide Transition Speed */
+            directionNav: true,		/* Left/Right Navigation True/False */
+            controlNav: true,		/* Bullet Navigaion True/False */
+            prevText: "",
+            nextText: "",
+        });
+        $(".progression-studios-slider-more-options").hover(function() {
+            var $this = $(".progression-studios-slider-more-options");
+            if ($this.hasClass('active')) {
+                $this.removeClass('active').addClass('hide');
+            } else {
+                $this.addClass('active');
+            }
+        });
+    }, []);
     const style = {
         backgroundImage: 'url(http://i3.ytimg.com/vi/8Qn_spdM5Zg/maxresdefault.jpg)',
         backgroundColor: '#111015'
@@ -45,7 +65,7 @@ export const FlexSlider = (props: Props) => {
         } else {
             if (slide.video.includes("youtube")) {
                 return (
-                    <video id={"VideoLightbox-" + slide.id} className="afterglow" width="960" height="540"
+                    <video id={"VideoLightbox-" + slide.id} className="afterglow-lightboxplayer" width="960" height="540"
                            data-youtube-id={getId(slide.video)}></video>
                 )
             }
@@ -111,14 +131,67 @@ export const FlexSlider = (props: Props) => {
                 </div>
                 <div className="progression-studios-slider-mobile-background-cover"></div>
             </div>
-        </li>)
+        </li>
+        )
     });
 
     return (
+        <>
         <div className="flexslider progression-studios-dashboard-slider">
             <ul className="slides">
                 {slides}
             </ul>
         </div>
+        <ul className="dashboard-genres-pro">
+        <li>
+        <img src="images/genres/drama.png" alt="Drama"/>
+        <h6>Drama</h6>
+        </li>
+        <li className="active">
+        <img src="images/genres/comedy.png" alt="Comedy"/>
+        <h6>Comedy</h6>
+        </li>
+        <li>
+        <img src="images/genres/action.png" alt="Action"/>
+        <h6>Action</h6>
+        </li>
+        <li>
+        <img src="images/genres/romance.png" alt="Romance"/>
+        <h6>Romance</h6>
+        </li>
+        <li>
+        <img src="images/genres/horror.png" alt="Horror"/>
+        <h6>Horror</h6>
+        </li>
+        <li>
+        <img src="images/genres/fantasy.png" alt="Fantasy"/>
+        <h6>Fantasy</h6>
+        </li>
+        <li>
+        <img src="images/genres/sci-fi.png" alt="Sci-Fi"/>
+        <h6>Sci-Fi</h6>
+        </li>
+        <li>
+        <img src="images/genres/thriller.png" alt="Thriller"/>
+        <h6>Thriller</h6>
+        </li>
+        <li>
+        <img src="images/genres/western.png" alt="Western"/>
+        <h6>Western</h6>
+        </li>
+        <li>
+        <img src="images/genres/adventure.png" alt="Adventure"/>
+        <h6>Adventure</h6>
+        </li>
+        <li>
+        <img src="images/genres/animation.png" alt="Animation"/>
+        <h6>Animation</h6>
+        </li>
+        <li>
+        <img src="images/genres/documentary.png" alt="Documentary"/>
+        <h6>Documentary</h6>
+        </li>
+        </ul>
+            </>
     );
 }

@@ -81,11 +81,11 @@ const Header: React.FC<Props> = (props) => {
         );
     } else {
         // @ts-ignore
-        $(".range-example-rating-input").asRange({
+        /*$(".range-example-rating-input").asRange({
             range: true,
             limit: false,
             tip: true,
-        });
+        });*/
         const clickHeadInfo = (id: string) => {
             let $this = $(id);
             if ($this.hasClass('active')) {

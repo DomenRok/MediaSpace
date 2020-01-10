@@ -5,15 +5,15 @@ import {HomeRow} from "../Components/HomeRow";
 import {Footer} from "../Components/Footer";
 import {Modal} from "../Components/Modal";
 import { Redirect } from "react-router";
+
 interface HomeProps {
     signIn: (active: boolean) => void
+    loggedIn: boolean
 }
 
 export const Home = (props: HomeProps) => {
-    const [loggedIn, setLoggedIn] = useState<boolean>(false);
-
-    if (loggedIn) {
-        return <Redirect to={"/browse"}/>
+    if (props.loggedIn) {
+        return <Redirect to={"/browse/"}/>
     }
     const slides = [{
         heading: "Welcome to MediaSpace",
@@ -32,16 +32,16 @@ export const Home = (props: HomeProps) => {
     }];
 
     const signIn = (e: boolean) => {
-        setLoggedIn(e);
+        props.signIn(e);
     };
 
     return (
-        <div id={loggedIn ? "sidebar-bg" : ""}>
-            <Header loggedIn={loggedIn}/>
+        <>
+        <Header loggedIn={props.loggedIn} />
             <FlexSlider slides={slides}/>
             <HomeRow/>
-            <Footer loggedIn={loggedIn}/>
-            {!loggedIn && <Modal loggedIn={loggedIn} signIn={signIn}/>}
-        </div>
+            <Footer loggedIn={false}/>
+            <Modal loggedIn={false} signIn={signIn}/>
+            </>
     );
 };

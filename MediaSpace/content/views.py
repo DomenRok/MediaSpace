@@ -23,3 +23,18 @@ class MovieDetail(generics.RetrieveUpdateDestroyAPIView):
 class MovieCreate(generics.CreateAPIView):
     queryset = models.Movie.objects.all()
     serializer_class = serializers.MovieSerializer
+
+
+class RatingList(generics.ListAPIView):
+    queryset = models.Rating.objects.all()
+    serializer_class = serializers.MovieSerializer
+
+
+class RatingDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Rating.objects.all()
+    serializer_class = serializers.MovieSerializer
+
+
+class RatingCreate(generics.CreateAPIView):
+    queryset = models.Rating.objects.all()
+    serializer_class = serializers.MovieSerializer

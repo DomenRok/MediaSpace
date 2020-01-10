@@ -11,7 +11,7 @@ import {Dashboard} from "./Pages/Dashboard";
 const App: React.FC = (props):any => {
     const [isloggedIn, setLoggedIn] = useState(false);
     const signIn = (e: boolean) => {
-        setLoggedIn(true);
+        setLoggedIn(e);
     };
 
 
@@ -26,7 +26,7 @@ const App: React.FC = (props):any => {
     return (
         <HashRouter>
             <Route path="/" render={(props) => <Home {...props} signIn={signIn}/>}/>
-            <Route path="/browse/:id?" render={() => <Dashboard/>}/>
+            <Route path="/browse/:id?" render={() => <Dashboard loggedIn={isloggedIn}/>}/>
         </HashRouter>
     );
 

@@ -21,6 +21,9 @@ export const DashBoardSlider = (props: Props) => {
     useEffect(() => {
         (window as any).afterglow = new Afterglow();
         (window as any).afterglow.init();
+        document.addEventListener("DOMContentLoaded", function() {
+            (window as any).afterglow.init();
+        });
         $('.progression-studios-dashboard-slider').flexslider({
             slideshow: false,  		/* Autoplay True/False */
             slideshowSpeed: 8000,	/* Autoplay Speed */

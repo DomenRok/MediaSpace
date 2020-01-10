@@ -4,10 +4,7 @@
  * @license MIT
  */
 
-'use strict';
-
 import Player from './components/Player';
-import Lightbox from './components/Lightbox';
 import LightboxTrigger from './components/LightboxTrigger';
 import Eventbus from './components/Eventbus';
 import DOMElement from './lib/DOMElement';
@@ -168,13 +165,13 @@ class Afterglow {
 	 */
 	play(playerid: any){
 		// Look out for regular player
-	 	for (var i = this.players.length - 1; i >= 0; i--) {
+	 	for (let i = this.players.length - 1; i >= 0; i--) {
 			if(this.players[i].id === playerid){
 	 			this.players[i].getPlayer().play();
 			}
 	 	};
 	 	// Else try to trigger lightbox player
-	 	for (var i = this.lightboxtriggers.length - 1; i >= 0; i--) {
+	 	for (let i = this.lightboxtriggers.length - 1; i >= 0; i--) {
 	 		if(this.lightboxtriggers[i].playerid === playerid){
 	 			this.lightboxtriggers[i].trigger();
 			}
@@ -217,7 +214,7 @@ class Afterglow {
 	 		}
 	 	};
 	 	// Else look for an active lightbox
-	 	for (var i = this.lightboxtriggers.length - 1; i >= 0; i--) {
+	 	for (let i = this.lightboxtriggers.length - 1; i >= 0; i--) {
 	 		if(this.lightboxtriggers[i].playerid === playerid){
 	 			this.closeLightbox();
 	 			return true;

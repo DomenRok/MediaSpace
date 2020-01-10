@@ -21,7 +21,7 @@ export const Dashboard: React.FC<Props> = (props) => {
         genre: "action",
         href: "efss",
         id: 15,
-        video: "https://www.youtube.com/watch?v=_X--xYexBdI"
+        video: "http://afterglowplayer.com/sandbox/v1/afterglow_local_hd.mp4"
     };
     var sliders = [slider];
 

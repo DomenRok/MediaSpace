@@ -84,7 +84,7 @@ Examples:
 
 ## Authentication
 ### get Token
-```curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'username=test&password=geslo123' 'http://127.0.0.1:8000/api/v1/rest-auth/login/'```
+```curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'username=test&password=geslo123' 'http://127.0.0.1:8000/api/v1/users/login/'```
 
 ### Token auth
 For clients to authenticate, the token key should be included in the Authorization HTTP header. The key should be prefixed by the string literal "Token", with whitespace separating the two strings. For example:

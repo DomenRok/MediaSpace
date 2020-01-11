@@ -39,6 +39,7 @@ export const DashBoardSlider = (props: Props) => {
             }
         });
         (window as any).afterglow = new Afterglow();
+        (window as any).afterglow.init();
         document.addEventListener("DOMContentLoaded", function() {
             (window as any).afterglow.init();
         });

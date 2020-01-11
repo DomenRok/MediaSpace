@@ -16,7 +16,7 @@ export const loadUser = () => {
 }
 
 export const login = (formDetails: IUser) => {
-    (document.getElementsByClassName("modal-backdrop")[0].parentNode as any).removeChild(document.getElementsByClassName("modal-backdrop")[0])
+    (document.getElementsByClassName("modal-backdrop")[0].parentNode as any).removeChild(document.getElementsByClassName("modal-backdrop")[0]);
     return (dispatch: any, getState: any) => {
         let headers = {"Content-Type": "application/json"};
         let body = JSON.stringify(formDetails);

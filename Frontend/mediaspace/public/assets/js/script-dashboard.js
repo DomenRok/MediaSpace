@@ -31,34 +31,6 @@ jQuery(document).ready(function($) {
 /*
 =============================================== 02. Video App Header On/Off Clickable Items  ===============================================
 */
-	$("#header-user-profile-click").click(function() {
-		var $this = $("#header-user-profile");
-	    if ($this.hasClass('active')) {
-	        $this.removeClass('active').addClass('hide');
-	    } else {
-	        $this.addClass('active');
-	    }		
-	});
-	
-	
-	$("#header-user-notification-click").click(function() {
-		var $this = $("#header-user-notification");
-	    if ($this.hasClass('active')) {
-	        $this.removeClass('active').addClass('hide');
-	    } else {
-	        $this.addClass('active');
-	    }		
-	});
-	
-	
-	$("#search-icon-more").click(function() {
-		var $this = $("#video-search-header");
-	    if ($this.hasClass('active')) {
-	        $this.removeClass('active').addClass('hide');
-	    } else {
-	        $this.addClass('active');
-	    }		
-	});
 	
 	/* If clicking outside of boxes, automatically hide */
 	$(document).click(function(e) {

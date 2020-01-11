@@ -2,7 +2,7 @@ interface IUser {
     username: string;
     password: string;
 }
-const APIURL = "http://127.0.0.1:8000/api/v1/rest-auth";
+const APIURL = "http://127.0.0.1:8000/api/v1/users";
 export const loadUser = () => {
     return (dispatch: any, getState: any) => {
         dispatch({type: "USER_LOADING"});
@@ -15,12 +15,11 @@ export const loadUser = () => {
 }
 
 export const login = (formDetails: IUser) => {
-
     return (dispatch: any, getState: any) => {
         let headers = {"Content-Type": "application/json"};
         let body = JSON.stringify(formDetails);
 
-        return fetch(APIURL+"/login/", {headers, body, method: "POST"})
+        return fetch(APIURL+"/login", {headers, body, method: "POST"})
             .then(res => {
                 if (res.status < 500) {
                     return res.json().then(data => {
@@ -33,14 +32,13 @@ export const login = (formDetails: IUser) => {
             })
             .then((res:any) => {
                 if (res.status === 200) {
+                    $('#LoginModal').modal('hide');
                     dispatch({type: 'LOGIN_SUCCESSFUL', data: res.data, user: formDetails.username });
                     return res.data;
                 } else if (res.status === 403 || res.status === 401) {
-                    (document.getElementsByClassName("modal-backdrop")[0].parentNode as any).removeChild(document.getElementsByClassName("modal-backdrop")[0]);
                     dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
                     throw res.data;
                 } else {
-                    (document.getElementsByClassName("modal-backdrop")[0].parentNode as any).removeChild(document.getElementsByClassName("modal-backdrop")[0]);
                     console.log("failed login");
                     dispatch({type: "LOGIN_FAILED", data: res.data});
                     throw res.data;

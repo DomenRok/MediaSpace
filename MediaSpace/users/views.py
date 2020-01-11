@@ -59,8 +59,12 @@ def logout(request):
         return Response({'error': 'Invalid Credentials'},
                             status=HTTP_404_NOT_FOUND)
     if user:
-        token = Token.objects.get(user_id=user.id)
-        token.delete()
+        try:
+            token = Token.objects.get(user_id=user.id)
+            token.delete()
+        except Token.DoesNotExist:
+            return Response({'error': 'You are already logged out.'},
+                            status=HTTP_404_NOT_FOUND)
     return Response()
 
 

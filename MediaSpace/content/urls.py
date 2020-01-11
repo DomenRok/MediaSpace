@@ -4,6 +4,8 @@ from . import views
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.views.decorators.csrf import csrf_exempt
 
+
+
 urlpatterns = [
     path('movie', csrf_exempt(views.MovieList.as_view())),
     path('movie/<int:pk>', csrf_exempt(views.MovieDetail.as_view())),

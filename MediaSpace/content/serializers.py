@@ -1,7 +1,6 @@
 # users/serializers.py
 from rest_framework import serializers
 from . import models
-from users.serializers import UserSerializer
 
 
 class RatingSerializer(serializers.ModelSerializer):
@@ -13,10 +12,12 @@ class RatingSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Rating
-        fields = ('comment','rating', 'person')
+        fields = ('comment', 'person')
 
 
 class MovieWithCommentsSerializer(serializers.ModelSerializer):
+    """ Serializes movies with respect to their reverse_set """
+
     ratings = CommentSerializer(many=True, read_only=True, source="rating_set")
 
     class Meta:

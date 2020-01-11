@@ -49,6 +49,11 @@ pip install -r requirements.txt
 ```py manage.py runserver```  
   
 ## REST-api
+Detailed instructions can be found at
+`http://127.0.0.1:8000/doc/`
+or
+`http://127.0.0.1:8000/`
+
 Examples:  
 ```python
  # Provides a list of all users
@@ -85,3 +90,5 @@ Examples:
 For clients to authenticate, the token key should be included in the Authorization HTTP header. The key should be prefixed by the string literal "Token", with whitespace separating the two strings. For example:
 
 ```Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b```
+
+

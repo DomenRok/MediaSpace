@@ -4,3 +4,4 @@ django-rest-auth
 django-allauth
 mysqlclient
 django-cors-headers
+drf-yasg

@@ -28,10 +28,6 @@ const Home = (props: any) => {
         black: true
     }];
 
-    const signIn = (e: boolean) => {
-        props.signIn(e);
-    };
-
     return (
         <>
         <Header/>

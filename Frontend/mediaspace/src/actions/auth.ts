@@ -47,6 +47,7 @@ export const login = (formDetails: IUser) => {
 }
 
 export const logout = () => {
+    localStorage.clear();
     return (dispatch: any, getState: any) => {
         let headers = {"Content-Type": "application/json"};
 

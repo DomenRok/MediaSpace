@@ -21,10 +21,10 @@ const Home = (props: any) => {
         black: false
     }, {
         heading: "Free trial",
-        caption: "See the most exciting movies for free first month. Only on MediaSpace",
+        caption: "See the most exciting movies and TV shows for free first month. Only on MediaSpace",
         button: "Watch now",
         href: "star-wars",
-        bgImage: "https://miro.medium.com/max/7680/1*hzavzrdEG6oj3sN747B1yA.jpeg",
+        bgImage: "http://ost-to-pst.org/wp-content/uploads/sites/73/2019/07/Media-managementv2_herobanner.jpg",
         black: true
     }];
 

@@ -234,7 +234,7 @@ const Header: React.FC = (props: any) => {
                             <li><a href="dashboard-account.html"><span className="icon-Gears"></span>Account Details</a>
                             </li>
                             <li><a href="#!"><span className="icon-Life-Safer"></span>Help/Support</a></li>
-                            <li><Link to="/" onClick={logout}><span className="icon-Power-3"></span>Log Out</Link></li>
+                            <li><a href="/" onClick={logout}><span className="icon-Power-3"></span>Log Out</a></li>
                         </ul>
                     </div>
                     {/* close #header-user-profile-menu */}

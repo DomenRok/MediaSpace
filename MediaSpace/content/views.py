@@ -7,12 +7,26 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
+class GenreList(generics.ListAPIView):
+    """ Lists all genres. """
+    queryset = models.Genre.objects.all()
+    serializer_class = serializers.GenreSerializer
+
+
+class GenreDetail(generics.RetrieveUpdateDestroyAPIView):
+    """ Get info for a given genre_id. """
+    queryset = models.Genre.objects.all()
+    serializer_class = serializers.GenreSerializer
+
+
+class GenreCreate(generics.CreateAPIView):
+    """ Create a new genre. """
+    queryset = models.Genre.objects.all()
+    serializer_class = serializers.GenreSerializer
 
 
 class MovieList(generics.ListAPIView):
-    """ Lists all movies """
+    """ Lists all movies. """
     queryset = models.Movie.objects.all()
     serializer_class = serializers.MovieSerializer
 

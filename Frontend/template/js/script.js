@@ -121,7 +121,7 @@ jQuery(document).ready(function($) {
 	$("ul.registration-invite-friends-list li").click(function() { 
 	    $(this).closest("ul.registration-invite-friends-list li").toggleClass("active");
 	});
-	
+
 	$("ul.registration-genres-choice li").click(function() { 
 	    $(this).closest("ul.registration-genres-choice li").toggleClass("active");
 	});

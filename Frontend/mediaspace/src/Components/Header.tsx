@@ -1,14 +1,10 @@
 import React from "react";
 import {Link} from 'react-router-dom';
 import {SideBarNav} from "./SidebarNav";
+import {connect} from "react-redux";
 
-interface Props {
-    loggedIn: boolean
-}
-
-const Header: React.FC<Props> = (props) => {
-    console.log(props.loggedIn);
-    if (!props.loggedIn) {
+const Header: React.FC = (props: any) => {
+    if (!props.isAuthenticated) {
         return (
             <header id="masthead-pro">
                 <div className="container">
@@ -329,5 +325,9 @@ const Header: React.FC<Props> = (props) => {
         );
     }
 };
-
-export default Header;
+const mapStateToProps = (state:any) => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated
+    };
+}
+export default connect(mapStateToProps,null)(Header);

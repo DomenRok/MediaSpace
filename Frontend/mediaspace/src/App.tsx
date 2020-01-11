@@ -28,7 +28,7 @@ interface AnyProps {
 const RootContainerComponent: React.FC<AnyProps> = (props) => {
     useEffect(() => {
         props.loadUser()
-    }, []);
+    }, [props.auth.isAuthenticated]);
 
     const PrivateRoute = ({component: ChildComponent, logged, red, ...rest}: any) => {
         const thisprops = props;
@@ -37,7 +37,7 @@ const RootContainerComponent: React.FC<AnyProps> = (props) => {
             if (thisprops.auth.isAuthenticated === logged) {
                 return <ChildComponent {...props} />
             } else {
-               // return <Redirect to={red} />;
+                return <Redirect to={red} />;
             }
         }} />
     }

@@ -62,7 +62,7 @@ class Player {
 		let options = this.config.options;
 		
 		// initiate videojs and do some post initiation stuff
-		var player = window.videojs(videoelement, options).ready(function(){
+		let player = window.videojs(videoelement, options).ready(function(){
 
 			// Enable hotkeys
 			this.hotkeys({

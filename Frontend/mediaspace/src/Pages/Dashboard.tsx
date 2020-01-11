@@ -7,9 +7,6 @@ interface Props {
 }
 
 export const Dashboard: React.FC<Props> = (props) => {
-    if (!props.loggedIn) {
-        return <Redirect to="/"/>
-    }
     const slider = {
         title: "Film",
         bgImage: "https://cdn.hipwallpaper.com/i/96/4/ecEQiJ.jpeg",
@@ -24,7 +21,7 @@ export const Dashboard: React.FC<Props> = (props) => {
 
     return (
         <div id="sidebar-bg">
-            <Header loggedIn={props.loggedIn}/>
+            <Header/>
             <main id="col-main">
             <DashBoardSlider slides={sliders}/>
             </main>

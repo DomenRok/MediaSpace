@@ -39,7 +39,7 @@ export const DashBoardSlider = (props: Props) => {
                 $this.addClass('active');
             }
         });
-        if ((window as any).afterglow instanceof Afterglow) {
+        if (!((window as any).afterglow instanceof Afterglow)) {
             (window as any).afterglow = new Afterglow();
             (window as any).afterglow.init();
         }

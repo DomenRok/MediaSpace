@@ -13,7 +13,7 @@ interface HomeProps {
 
 export const Home = (props: HomeProps) => {
     if (props.loggedIn) {
-        return <Redirect to={"/browse/"}/>
+        return <Redirect to={"/dashboard/"}/>
     }
     const slides = [{
         heading: "Welcome to MediaSpace",

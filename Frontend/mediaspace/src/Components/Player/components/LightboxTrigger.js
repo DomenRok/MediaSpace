@@ -3,7 +3,6 @@
  * @link http://afterglowplayer.com
  * @license MIT
  */
-'use strict';
 
 import Lightbox from './Lightbox';
 
@@ -49,7 +48,7 @@ class LightboxTrigger extends DOMElement {
 			e.preventDefault();
 
 			// Launch the lightbox
-			if (document.getElementsByClassName("afterglow-lightbox-wrapper").length == 0) {
+			if (document.getElementsByClassName("afterglow-lightbox-wrapper").length === 0) {
 				this.trigger();
 			}
 
@@ -88,7 +87,7 @@ class LightboxTrigger extends DOMElement {
 	 * @return {void}
 	 */
 	closeLightbox(){
-		if(this.lightbox != undefined){
+		if(typeof this.lightbox !== 'undefined'){
 			this.lightbox.close();
 			this.deleteLightbox();
 		}
@@ -99,7 +98,7 @@ class LightboxTrigger extends DOMElement {
 	 * @return {void}
 	 */
 	deleteLightbox(){
-		if(this.lightbox != undefined){
+		if(typeof this.lightbox !== 'undefined'){
 			delete this.lightbox;
 		}
 	}

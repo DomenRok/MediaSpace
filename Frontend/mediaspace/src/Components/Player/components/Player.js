@@ -4,8 +4,6 @@
  * @license MIT
  */
 
-'use strict';
-
 import Config from './Config';
 import Util from '../lib/Util';
 
@@ -172,12 +170,12 @@ class Player {
 	 */
 	applyParameters(){
 		// Make lightboxplayer not overscale
-		if(this.videoelement.getAttribute("data-overscale") == "false"){
+		if(this.videoelement.getAttribute("data-overscale") === "false"){
 			this.videoelement.setAttribute("data-maxwidth",this.videoelement.getAttribute("width"));
 		}
 
 		// Apply some responsive stylings
-		if(this.videoelement.getAttribute("data-autoresize") != 'none' && this.videoelement.getAttribute("data-autoresize") != 'false'){
+		if(this.videoelement.getAttribute("data-autoresize") !== 'none' && this.videoelement.getAttribute("data-autoresize") !== 'false'){
 			this.videoelement.addClass("vjs-responsive");
 			let ratio = this.calculateRatio();
 			this.videoelement.node.style.paddingTop = (ratio * 100)+"%";

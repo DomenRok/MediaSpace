@@ -92,7 +92,6 @@ class Afterglow {
 			let trigger = new LightboxTrigger(lightboxtriggers[i]);
 
 			this.bindLightboxTriggerEvents(trigger);
-
 			this.lightboxtriggers.push(trigger);
 		}
 	}

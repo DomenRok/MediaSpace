@@ -3,7 +3,6 @@
  * @link http://afterglowplayer.com
  * @license MIT
  */
-'use strict';
 
 import Player from './Player';
 import Util from '../lib/Util';
@@ -88,7 +87,7 @@ class Lightbox extends DOMElement{
 	 * @return {void}
 	 */
 	launch(_callback){
-		var util = new Util;
+		var util = new Util();
 		document.body.appendChild(this.node);
 
 		this.player.init(() => {
@@ -103,7 +102,7 @@ class Lightbox extends DOMElement{
 			}
 
 			// Adding autoclose functionality
-			if(this.lightbox.videoelement.getAttribute("data-autoclose") == "true"){
+			if(this.lightbox.videoelement.getAttribute("data-autoclose") === "true"){
 				this.player.videojs.on('ended', () => {
 					this.close();
 				});
@@ -138,7 +137,7 @@ class Lightbox extends DOMElement{
 
 		// bind the escape key
 		util.addEventListener(window,'keyup',(e) => {
-			if(e.keyCode == 27)
+			if(e.keyCode === 27)
 			{
 				this.close();
 			}
@@ -158,7 +157,7 @@ class Lightbox extends DOMElement{
 		// Standard HTML5 player
 		if(this.lightbox.videoelement !== undefined){			
 			var ratio = this.lightbox.videoelement.getAttribute("data-ratio");
-			if(this.lightbox.videoelement.getAttribute("data-overscale") == "false")
+			if(this.lightbox.videoelement.getAttribute("data-overscale") === "false")
 			{
 				// Calculate the new size of the player with maxwidth
 				var sizes = this.calculateLightboxSizes(ratio, parseInt(this.lightbox.videoelement.getAttribute("data-maxwidth")));
@@ -170,7 +169,7 @@ class Lightbox extends DOMElement{
 		}
 		else{
 			// Youtube
-			if(document.querySelectorAll("div.afterglow-lightbox-wrapper .vjs-youtube").length == 1){
+			if(document.querySelectorAll("div.afterglow-lightbox-wrapper .vjs-youtube").length === 1){
 				var playerelement = document.querySelector("div.afterglow-lightbox-wrapper .vjs-youtube");
 				var ratio = playerelement.getAttribute("data-ratio");
 				var sizes = this.calculateLightboxSizes(ratio);

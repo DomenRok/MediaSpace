@@ -1,3 +1,4 @@
+import $ from "jquery";
 interface IUser {
     username: string;
     password: string;
@@ -32,7 +33,7 @@ export const login = (formDetails: IUser) => {
             })
             .then((res:any) => {
                 if (res.status === 200) {
-                    $('#LoginModal').modal('hide');
+                    ($('#LoginModal') as any).modal('hide');
                     dispatch({type: 'LOGIN_SUCCESSFUL', data: res.data, user: formDetails.username });
                     return res.data;
                 } else if (res.status === 403 || res.status === 401) {

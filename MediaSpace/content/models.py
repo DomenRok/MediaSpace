@@ -21,6 +21,9 @@ class Movie(models.Model):
     imdb_id = models.IntegerField(blank=True, null=True)
     thumbnail_url = models.URLField(blank=True, null=True)
 
+    def __str__(self):
+        return f"{self.title}"
+
 
 class Rating(models.Model):
     comment = models.CharField(blank=True, max_length=150)
@@ -31,3 +34,6 @@ class Rating(models.Model):
     person = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     date_rated = models.DateTimeField(blank=True)
+
+    def __str__(self):
+        return f"{self.movie}: {self.rating}"

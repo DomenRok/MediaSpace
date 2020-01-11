@@ -1,9 +1,6 @@
 import React from "react";
 import Header from "../Components/Header";
 import {DashBoardSlider, Slider} from "../Components/DashBoardSlider";
-import {HomeRow} from "../Components/HomeRow";
-import {Footer} from "../Components/Footer";
-import {Modal} from "../Components/Modal";
 import {Redirect} from "react-router";
 interface Props {
     loggedIn: boolean

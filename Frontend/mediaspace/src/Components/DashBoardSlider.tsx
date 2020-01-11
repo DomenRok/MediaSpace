@@ -62,9 +62,6 @@ export const DashBoardSlider = (props: Props) => {
     const videoPlayer = (slide: Slider) => {
         if (supportedExt.has(slide.video.split('.').pop() as string)) {
             return (<>
-                <a className="progression-studios-slider-play-btn afterglow"
-                   href={"#VideoLightbox-" + slide.id}><i
-                    className="fas fa-play"></i></a>
                 <video id={"VideoLightbox-" + slide.id}
                        poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg?v1" width="960"
                        height="540">
@@ -75,11 +72,8 @@ export const DashBoardSlider = (props: Props) => {
         } else {
             if (slide.video.includes("youtube")) {
                 return (<>
-                    <a className="progression-studios-slider-play-btn afterglow"
-                       href={"#VideoLightbox-" + slide.id}><i
-                        className="fas fa-play"></i></a>
                     <video id={"VideoLightbox-" + slide.id} width="960" height="540"
-                           data-youtube-id={getId(slide.video)}></video>
+                           data-vimeo-id={76979871}></video>
                     </>
                 )
             }
@@ -95,6 +89,9 @@ export const DashBoardSlider = (props: Props) => {
                 <div className="progression-studios-slider-display-table">
                     <div className="progression-studios-slider-vertical-align">
                         <div className="container">
+                            <a className="progression-studios-slider-play-btn afterglow"
+                               href={"#VideoLightbox-" + slide.id}><i
+                                className="fas fa-play"></i></a>
                             {videoPlayer(slide)}
                             <div
                                 className="circle-rating-pro"

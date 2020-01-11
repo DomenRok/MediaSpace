@@ -3,18 +3,15 @@ import Header from "../Components/Header";
 import {FlexSlider} from "../Components/FlexSlider";
 import {HomeRow} from "../Components/HomeRow";
 import {Footer} from "../Components/Footer";
-import {Modal} from "../Components/Modal";
+import Modal from "../Components/Modal";
 import { Redirect } from "react-router";
 
-interface HomeProps {
+/*interface HomeProps {
     signIn: (active: boolean) => void
     loggedIn: boolean
-}
+}*/
 
-export const Home = (props: HomeProps) => {
-    if (props.loggedIn) {
-        return <Redirect to={"/browse/"}/>
-    }
+const Home = (props: any) => {
     const slides = [{
         heading: "Welcome to MediaSpace",
         caption: "Random slide",
@@ -40,8 +37,10 @@ export const Home = (props: HomeProps) => {
         <Header loggedIn={props.loggedIn} />
             <FlexSlider slides={slides}/>
             <HomeRow/>
-            <Footer loggedIn={false}/>
-            <Modal loggedIn={false} signIn={signIn}/>
+            <Footer/>
+            <Modal/>
             </>
     );
 };
+
+export default Home;

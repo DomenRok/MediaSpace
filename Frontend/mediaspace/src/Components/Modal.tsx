@@ -1,24 +1,16 @@
 import React, {useEffect, useState} from "react";
-import MediaAPIClient, {createCookie} from "../Api/MediaAPIClient";
+import {connect} from "react-redux";
+import {auth} from "../actions";
 import $ from "jquery";
-
-interface Props {
-    loggedIn: boolean,
-    signIn: (active: boolean) => void
-}
+import { Redirect } from "react-router-dom";
 
 interface IUser {
     username: string;
     password: string;
 }
 
-export const Modal: React.FC<Props> = (props) => {
+const Modal: React.FC = (props: any) => {
     const [formDetails, setFormDetails] = useState<IUser>({username: "", password: ""});
-    const [showModal, setShowModal] = useState<boolean>(true);
-
-    useEffect(() => {
-        setShowModal(!props.loggedIn);
-    }, [props.loggedIn]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const {name, value} = e.target;
@@ -29,19 +21,14 @@ export const Modal: React.FC<Props> = (props) => {
         //setShowModal(prevState => !prevState);
     };
 
-    const signIn = (e: React.MouseEvent<HTMLElement>) => {
-        //new MediaAPIClient().login(formDetails).then((resp) => {
-            //if (resp === 1) {
-                props.signIn(true);
-                $('#LoginModal').modal('hide');
-                //$('#errorForm').toggle();
-
-                $('.modal-backdrop').remove();
-           // } else {
-           //     $('#errorForm').toggle();
-         //   }
-        //});
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+        e.preventDefault();
+        props.login(formDetails);
     };
+
+    if (props.isAuthenticated) {
+        return <Redirect to="/browse" />
+    }
 
     return (
         <div className="modal fade" id="LoginModal" tabIndex={-1} role="dialog" aria-labelledby="LoginModal"
@@ -58,7 +45,7 @@ export const Modal: React.FC<Props> = (props) => {
                     <div className="modal-body-pro social-login-modal-body-pro">
 
                         <div className="registration-social-login-container">
-                            <form>
+                            <form onSubmit={onSubmit}>
                                 <div className="form-group">
                                     <input type="text" name="username"
                                            value={formDetails.username}
@@ -76,9 +63,8 @@ export const Modal: React.FC<Props> = (props) => {
                                     Error with signing in.
                                 </div>
                                 <div className="form-group">
-                                    <button type="button"
+                                    <button type="submit"
                                             className="btn btn-green-pro btn-display-block"
-                                            onClick={signIn}
                                     >Sign In
                                     </button>
                                 </div>
@@ -122,3 +108,26 @@ export const Modal: React.FC<Props> = (props) => {
                     )
 
 }
+
+const mapStateToProps = (state:any) => {
+    let errors = [] as any;
+    if (state.auth.errors) {
+        errors = Object.keys(state.auth.errors).map(field => {
+            return {field, message: state.auth.errors[field]};
+        });
+    }
+    return {
+        errors,
+        isAuthenticated: state.auth.isAuthenticated
+    };
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        login: (formDetails: any) => {
+            return dispatch(auth.login(formDetails));
+        }
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);

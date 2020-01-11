@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {SideBarNav} from "./SidebarNav";
 import {connect} from "react-redux";
 import {logout} from "../actions/auth";
+import $ from "jquery";
 
 const Header: React.FC = (props: any) => {
     if (!props.isAuthenticated) {

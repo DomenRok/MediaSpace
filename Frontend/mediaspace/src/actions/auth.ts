@@ -30,7 +30,7 @@ export const login = (formDetails: IUser) => {
                     throw res;
                 }
             })
-            .then(res => {
+            .then((res:any) => {
                 if (res.status === 200) {
                     dispatch({type: 'LOGIN_SUCCESSFUL', data: res.data, user: formDetails.username });
                     return res.data;
@@ -38,6 +38,7 @@ export const login = (formDetails: IUser) => {
                     dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
                     throw res.data;
                 } else {
+                    console.log("failed login");
                     dispatch({type: "LOGIN_FAILED", data: res.data});
                     throw res.data;
                 }

@@ -26,10 +26,6 @@ const Modal: React.FC = (props: any) => {
         props.login(formDetails);
     };
 
-    if (props.isAuthenticated) {
-        return <Redirect to="/browse" />
-    }
-
     return (
         <div className="modal fade" id="LoginModal" tabIndex={-1} role="dialog" aria-labelledby="LoginModal"
              aria-hidden="true">

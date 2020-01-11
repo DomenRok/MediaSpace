@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import Afterglow from "./Player/Afterglow";
+import "flexslider";
 
 export interface Slider {
     id: Number;
@@ -19,11 +20,6 @@ interface Props {
 
 export const DashBoardSlider = (props: Props) => {
     useEffect(() => {
-        (window as any).afterglow = new Afterglow();
-        (window as any).afterglow.init();
-        document.addEventListener("DOMContentLoaded", function() {
-            (window as any).afterglow.init();
-        });
         $('.progression-studios-dashboard-slider').flexslider({
             slideshow: false,  		/* Autoplay True/False */
             slideshowSpeed: 8000,	/* Autoplay Speed */
@@ -41,6 +37,10 @@ export const DashBoardSlider = (props: Props) => {
             } else {
                 $this.addClass('active');
             }
+        });
+        (window as any).afterglow = new Afterglow();
+        document.addEventListener("DOMContentLoaded", function() {
+            (window as any).afterglow.init();
         });
     }, []);
     const style = {

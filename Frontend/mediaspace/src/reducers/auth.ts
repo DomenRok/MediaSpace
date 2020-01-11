@@ -24,7 +24,7 @@ export default function auth(state=initialState, action: any) {
         case 'REGISTRATION_SUCCESSFUL':
             localStorage.setItem("mediaspacetoken", action.data.key);
             localStorage.setItem("mediaspaceuser", action.user);
-            return {...state, ...action.data, isAuthenticated: true, isLoading: false, errors: null, user: action.user};
+            return {...state, ...action.data.key, isAuthenticated: true, isLoading: false, errors: null, user: action.user};
 
         case 'AUTHENTICATION_ERROR':
         case 'LOGIN_FAILED':

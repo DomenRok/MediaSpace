@@ -34,7 +34,7 @@ const Home = (props: any) => {
 
     return (
         <>
-        <Header loggedIn={props.loggedIn} />
+        <Header/>
             <FlexSlider slides={slides}/>
             <HomeRow/>
             <Footer/>

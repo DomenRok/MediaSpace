@@ -4,8 +4,6 @@
  * @license MIT
  */
 
-'use strict';
-
 import Config from './Config';
 import Util from '../lib/Util';
 
@@ -60,9 +58,9 @@ class Player {
 	init(_callback = false){
 		let videoelement = this.videoelement.node;
 		let options = this.config.options;
-		
+
 		// initiate videojs and do some post initiation stuff
-		var player = window.videojs(videoelement, options).ready(function(){
+		let player = window.videojs(videoelement, options).ready(function(){
 
 			// Enable hotkeys
 			this.hotkeys({
@@ -86,9 +84,9 @@ class Player {
 
 				// Stop all other players if there are any on play
 				for( let key in window.videojs.getPlayers() ) {
-				    if(window.videojs.getPlayers()[key] !== null && window.videojs.getPlayers()[key].id_ !== this.id_){
-				    	window.videojs.getPlayers()[key].pause();
-				    }
+					if(window.videojs.getPlayers()[key] !== null && window.videojs.getPlayers()[key].id_ !== this.id_){
+						window.videojs.getPlayers()[key].pause();
+					}
 				}
 
 				// Remove youtube player class after 5 seconds if youtube player
@@ -118,10 +116,10 @@ class Player {
 			// Trigger afterglow fullscreen events
 			this.on('fullscreenchange', () => {
 				if(this.isFullscreen()){
-					window.afterglow.eventbus.dispatch(this.id(), 'fullscreen-entered');	
+					window.afterglow.eventbus.dispatch(this.id(), 'fullscreen-entered');
 				}
 				else{
-					window.afterglow.eventbus.dispatch(this.id(), 'fullscreen-left');	
+					window.afterglow.eventbus.dispatch(this.id(), 'fullscreen-left');
 				}
 				window.afterglow.eventbus.dispatch(this.id(), 'fullscreen-changed');
 			});
@@ -158,7 +156,7 @@ class Player {
 
 		// Remove sublime stuff
 		this.videoelement.removeClass("sublime");
-		
+
 		// Check for IE9 - IE11
 		let ie = this.util.ie().actualVersion;
 		if(ie >= 8 && ie <= 11){ // @see afterglow-lib.js
@@ -172,12 +170,12 @@ class Player {
 	 */
 	applyParameters(){
 		// Make lightboxplayer not overscale
-		if(this.videoelement.getAttribute("data-overscale") == "false"){
+		if(this.videoelement.getAttribute("data-overscale") === "false"){
 			this.videoelement.setAttribute("data-maxwidth",this.videoelement.getAttribute("width"));
 		}
 
 		// Apply some responsive stylings
-		if(this.videoelement.getAttribute("data-autoresize") != 'none' && this.videoelement.getAttribute("data-autoresize") != 'false'){
+		if(this.videoelement.getAttribute("data-autoresize") !== 'none' && this.videoelement.getAttribute("data-autoresize") !== 'false'){
 			this.videoelement.addClass("vjs-responsive");
 			let ratio = this.calculateRatio();
 			this.videoelement.node.style.paddingTop = (ratio * 100)+"%";
@@ -194,7 +192,7 @@ class Player {
 	applyYoutubeClasses(){
 		this.videoelement.addClass("vjs-youtube");
 		this.videoelement.addClass("vjs-youtube-headstart");
-		
+
 		// Check for native playback
 		if(document.querySelector('video').controls){
 			this.videoelement.addClass("vjs-using-native-controls");
@@ -238,7 +236,7 @@ class Player {
 		return parseFloat(ratio);
 	}
 
-	/** 
+	/**
 	 * Gets the current player's skin name for further use in css variables and so on.
 	 * @return {string}
 	 */
@@ -263,7 +261,7 @@ class Player {
 		this.videojs.dispose();
 		this.alive = false;
 	}
-	
+
 	/**
 	 * Getter for the player
 	 */

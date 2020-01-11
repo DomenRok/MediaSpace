@@ -3,70 +3,88 @@ from rest_framework import generics
 from . import models
 from . import serializers
 
-from django.db.models import Q
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
+
+class GenreList(generics.ListAPIView):
+    """ Lists all genres. """
+    queryset = models.Genre.objects.all()
+    serializer_class = serializers.GenreSerializer
+
+
+class GenreDetail(generics.RetrieveUpdateDestroyAPIView):
+    """ Get info for a given genre_id. """
+    queryset = models.Genre.objects.all()
+    serializer_class = serializers.GenreSerializer
+
+
+class GenreCreate(generics.CreateAPIView):
+    """ Create a new genre. """
+    queryset = models.Genre.objects.all()
+    serializer_class = serializers.GenreSerializer
 
 
 class MovieList(generics.ListAPIView):
-    """ Lists all movies """
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
-
+    """ Lists all movies. """
     queryset = models.Movie.objects.all()
     serializer_class = serializers.MovieSerializer
 
 
 class MovieDetail(generics.RetrieveUpdateDestroyAPIView):
     """ View movie details for given movie_id. """
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
-
     queryset = models.Movie.objects.all()
     serializer_class = serializers.MovieSerializer
 
 
 class MovieCreate(generics.CreateAPIView):
     """ Create a new movie. """
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
-
     queryset = models.Movie.objects.all()
     serializer_class = serializers.MovieSerializer
 
 
 class RatingList(generics.ListAPIView):
     """ Lists all ratings. """
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
-
     queryset = models.Rating.objects.all()
-    serializer_class = serializers.RatingSerializer
+    serializer_class = serializers.CommentRatingSerializer
 
 
 class RatingDetail(generics.RetrieveUpdateDestroyAPIView):
     """ Lists rating for a given rating_id. """
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
 
     queryset = models.Rating.objects.all()
-    serializer_class = serializers.RatingSerializer
+    serializer_class = serializers.CommentRatingSerializer
 
 
 class RatingCreate(generics.CreateAPIView):
     """ Create a new rating. """
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
 
     queryset = models.Rating.objects.all()
-    serializer_class = serializers.RatingSerializer
+    serializer_class = serializers.CommentRatingSerializer
 
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     """ Displays Comments for a given movie id"""
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
 
     queryset = models.Movie.objects.all()
     serializer_class = serializers.MovieWithCommentsSerializer
+
+
+@api_view()
+def get_ratings_per_movie(request, pk):
+    """ Returns all ratings for a given movie_id"""
+    ratings = models.Rating.objects.filter(movie__exact=pk)
+    Ser = serializers.RatingSerializer(ratings, many=True)
+
+    return Response(Ser.data)
+
+
+@api_view()
+def get_comments_per_movie(request, pk):
+    """ Returns all comments for a given movie_id. """
+    ratings = models.Rating.objects.filter(movie__exact=pk).exclude(comment__exact="")
+    Ser = serializers.CommentSerializer(ratings, many=True)
+
+    return Response(Ser.data)
+
+

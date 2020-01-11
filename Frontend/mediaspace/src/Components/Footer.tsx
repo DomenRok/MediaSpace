@@ -1,10 +1,7 @@
 import React from "react";
 
-interface Props {
-    loggedIn: boolean,
-}
 
-export const Footer: React.FC<Props> = (props) => {
+export const Footer: React.FC = () => {
     return (
         <>
         <footer id="footer-pro">

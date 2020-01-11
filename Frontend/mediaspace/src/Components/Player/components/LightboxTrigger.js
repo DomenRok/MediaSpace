@@ -3,7 +3,6 @@
  * @link http://afterglowplayer.com
  * @license MIT
  */
-'use strict';
 
 import Lightbox from './Lightbox';
 
@@ -49,7 +48,10 @@ class LightboxTrigger extends DOMElement {
 			e.preventDefault();
 
 			// Launch the lightbox
-			this.trigger();
+			if (document.getElementsByClassName("afterglow-lightbox-wrapper").length === 0) {
+				this.trigger();
+			}
+
 		});
 	}
 
@@ -58,15 +60,16 @@ class LightboxTrigger extends DOMElement {
 	 * @return {void}
 	 */
 	trigger(){
+
 		this.lightbox = new Lightbox();
 
 		var videoelement = this.videoelement.cloneNode(true);
-		
+
 		this.lightbox.passVideoElement(videoelement);
 
 		this.emit('trigger');
 		window.afterglow.eventbus.dispatch(this.playerid, 'lightbox-launched');
-		
+
 		this.lightbox.launch();
 
 		// Pass event to afterglow core
@@ -75,6 +78,8 @@ class LightboxTrigger extends DOMElement {
 			window.afterglow.eventbus.dispatch(this.playerid, 'lightbox-closed');
 			this.emit('close');
 		});
+
+
 	}
 
 	/**
@@ -82,7 +87,7 @@ class LightboxTrigger extends DOMElement {
 	 * @return {void}
 	 */
 	closeLightbox(){
-		if(this.lightbox != undefined){
+		if(typeof this.lightbox !== 'undefined'){
 			this.lightbox.close();
 			this.deleteLightbox();
 		}
@@ -93,7 +98,7 @@ class LightboxTrigger extends DOMElement {
 	 * @return {void}
 	 */
 	deleteLightbox(){
-		if(this.lightbox != undefined){
+		if(typeof this.lightbox !== 'undefined'){
 			delete this.lightbox;
 		}
 	}

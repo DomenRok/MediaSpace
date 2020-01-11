@@ -4,10 +4,10 @@
  * @license MIT
  */
 
-import Player from './components/Player';
 import LightboxTrigger from './components/LightboxTrigger';
 import Eventbus from './components/Eventbus';
 import DOMElement from './lib/DOMElement';
+import Player from "./components/Player";
 
 
 class Afterglow {
@@ -92,7 +92,6 @@ class Afterglow {
 			let trigger = new LightboxTrigger(lightboxtriggers[i]);
 
 			this.bindLightboxTriggerEvents(trigger);
-
 			this.lightboxtriggers.push(trigger);
 		}
 	}

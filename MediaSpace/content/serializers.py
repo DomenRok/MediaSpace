@@ -3,16 +3,28 @@ from rest_framework import serializers
 from . import models
 
 
+class GenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Genre
+        fields = '__all__'
+
+
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Rating
-        fields = ('comment', 'rating', 'person', 'movie', 'date_rated')
+        fields = ('rating', 'person', 'date_rated')
 
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Rating
         fields = ('comment', 'person')
+
+
+class CommentRatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Rating
+        fields = '__all__'
 
 
 class MovieWithCommentsSerializer(serializers.ModelSerializer):

@@ -49,39 +49,20 @@ pip install -r requirements.txt
 ```py manage.py runserver```  
   
 ## REST-api
-Examples:  
-```python
- # Provides a list of all users
- http://127.0.0.1:8000/api/v1/users/
- 
- # Logs you in, provides you with a token
- http://127.0.0.1:8000/api/v1/rest-auth/login/ 
- http://127.0.0.1:8000/api/v1/rest-auth/logout/ 
- 
- # Lists all movies
- http://127.0.0.1:8000/api/v1/content/movies/
- 
- # lists movie details for given movie id
- http://127.0.0.1:8000/api/v1/content/movies/<movie_id> 
- 
- # Create new movie ¸
- http://127.0.0.1:8000/api/v1/content/movies/create 
+Detailed instructions can be found at
+`http://127.0.0.1:8000/doc/`  
+or  
+`http://127.0.0.1:8000/`  
 
 
- # Repeated as movies for ratings
- http://127.0.0.1:8000/api/v1/content/rating
- http://127.0.0.1:8000/api/v1/content/rating/<rating_id>
- http://127.0.0.1:8000/api/v1/content/rating/create
- 
- # Lists given comments for a given movie_id.
- http://127.0.0.1:8000/api/v1/content/comment/<movie_id> 
- ```
 
 ## Authentication
 ### get Token
-```curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'username=test&password=geslo123' 'http://127.0.0.1:8000/api/v1/rest-auth/login/'```
+```curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'username=test&password=geslo123' 'http://127.0.0.1:8000/api/v1/users/login/'```
 
 ### Token auth
 For clients to authenticate, the token key should be included in the Authorization HTTP header. The key should be prefixed by the string literal "Token", with whitespace separating the two strings. For example:
 
 ```Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b```
+
+

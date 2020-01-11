@@ -3,7 +3,6 @@
  * @link http://afterglowplayer.com
  * @license MIT
  */
-'use strict';
 
 import Util from '../lib/Util';
 
@@ -16,7 +15,7 @@ class Config {
 	init(videoelement, skin = 'afterglow'){
 
 		// Check for the video element
-		if(videoelement == undefined){
+		if(typeof videoelement === 'undefined'){
 			console.error('Please provide a proper video element to afterglow');
 		}
 		else{
@@ -33,7 +32,7 @@ class Config {
 			this.setDefaultOptions();
 			this.setSkinControls();
 
-			let util = new Util;
+			let util = new Util();
 			// Initialize youtube if the current player is a youtube player
 			if(util.isYoutubePlayer(this.videoelement)){
 				this.setYoutubeOptions();	
@@ -126,7 +125,7 @@ class Config {
 			"src": "https://www.youtube.com/watch?v="+this.getPlayerAttributeFromVideoElement('youtube-id')
 		}];
 
-		let util = new Util;
+		let util = new Util();
 		if(util.ie().actualVersion >= 8 && util.ie().actualVersion <= 11){
 			this.options.youtube = {
 				ytControls : 2,
@@ -164,8 +163,8 @@ class Config {
 		}
 
 		// Fix for IE9. Somehow, this is necessary. Won't hurt anyone, so this hack is installed.
-		let util = new Util;
-		if(util.ie().actualVersion == 9){
+		let util = new Util();
+		if(util.ie().actualVersion === 9){
 			cssclass += ' ie9-is-bad';
 		}
 

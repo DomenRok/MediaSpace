@@ -3,8 +3,6 @@
  * @link http://afterglowplayer.com
  * @license MIT
  */
-'use strict';
-
 
 class Eventbus{
 

@@ -16,49 +16,11 @@ jQuery(document).ready(function($) {
 /*
 =============================================== 01. FLEXSLIDER DASHBOARD SLIDER  ===============================================
 */
-     $('.progression-studios-dashboard-slider').flexslider({
- 		slideshow: false,  		/* Autoplay True/False */
- 		slideshowSpeed: 8000,	/* Autoplay Speed */
- 		animation: "fade",		/* Slideshow Transition Animation */
- 		animationSpeed: 800, 	/* Slide Transition Speed */
- 		directionNav: true,		/* Left/Right Navigation True/False */
- 		controlNav: true,		/* Bullet Navigaion True/False */
- 		prevText: "",
- 		nextText: "",
-     });	 
 	 
 
 /*
 =============================================== 02. Video App Header On/Off Clickable Items  ===============================================
 */
-	$("#header-user-profile-click").click(function() {
-		var $this = $("#header-user-profile");
-	    if ($this.hasClass('active')) {
-	        $this.removeClass('active').addClass('hide');
-	    } else {
-	        $this.addClass('active');
-	    }		
-	});
-	
-	
-	$("#header-user-notification-click").click(function() {
-		var $this = $("#header-user-notification");
-	    if ($this.hasClass('active')) {
-	        $this.removeClass('active').addClass('hide');
-	    } else {
-	        $this.addClass('active');
-	    }		
-	});
-	
-	
-	$("#search-icon-more").click(function() {
-		var $this = $("#video-search-header");
-	    if ($this.hasClass('active')) {
-	        $this.removeClass('active').addClass('hide');
-	    } else {
-	        $this.addClass('active');
-	    }		
-	});
 	
 	/* If clicking outside of boxes, automatically hide */
 	$(document).click(function(e) {
@@ -99,14 +61,6 @@ jQuery(document).ready(function($) {
 /*
 =============================================== 05. Add to Favorites Menu ON/Off  ===============================================
 */
-	$(".progression-studios-slider-more-options").hover(function() {
-		var $this = $(".progression-studios-slider-more-options");
-	    if ($this.hasClass('active')) {
-	        $this.removeClass('active').addClass('hide');
-	    } else {
-	        $this.addClass('active');
-	    }		
-	});
 
 
 /*

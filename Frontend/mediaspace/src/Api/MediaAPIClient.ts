@@ -33,9 +33,10 @@ export default class MediaAPIClient {
 
     getUsers = () => this.fetchApi(USERS);
     login = async (formDetails: object) => {
-        const obj = await this.fetchApi(LOGIN,"POST", formDetails, false) as any;
+      const obj = await this.fetchApi(LOGIN,"POST", formDetails, false) as any;
+      console.log(obj);
         if (obj.hasOwnProperty('key')) {
-            createCookie("csrftoken", obj.key);
+            createCookie("csrftoken", "adasdsadasdas");
             return 1;
         }
         return 0;
@@ -50,11 +51,10 @@ export default class MediaAPIClient {
     fetchApi = async (url: string, method = "GET", data = {}, json = true) => {
         const bodyData = method === "GET" ? "" : JSON.stringify(data);
         const apiUrl = json ? APIURL+url+"/.json" : APIURL+url;
-        console.log(data);
+        console.log(method);
         const obj = await fetch(apiUrl, {
             method: method,
             credentials: "same-origin",
-            mode: 'no-cors',
             headers: {
                 "X-CSRFTOKEN": readCookie("csrftoken"),
                 "Accept": "application/json",

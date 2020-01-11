@@ -1,14 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from 'react-router-dom';
 import {SideBarNav} from "./SidebarNav";
+import {connect} from "react-redux";
+import {logout} from "../actions/auth";
+import $ from "jquery";
+import "jquery-asRange";
 
-interface Props {
-    loggedIn: boolean
-}
+const Header: React.FC = (props: any) => {
 
-const Header: React.FC<Props> = (props) => {
-    console.log(props.loggedIn);
-    if (!props.loggedIn) {
+    if (!props.isAuthenticated) {
         return (
             <header id="masthead-pro">
                 <div className="container">
@@ -89,6 +89,8 @@ const Header: React.FC<Props> = (props) => {
         });*/
         const clickHeadInfo = (id: string) => {
             let $this = $(id);
+            //var classes = ($this.attr('class') as any).split(" ");
+            //console.log(classes);
             if ($this.hasClass('active')) {
                 $this.removeClass('active').addClass('hide');
             } else {
@@ -237,7 +239,7 @@ const Header: React.FC<Props> = (props) => {
                             <li><a href="dashboard-account.html"><span className="icon-Gears"></span>Account Details</a>
                             </li>
                             <li><a href="#!"><span className="icon-Life-Safer"></span>Help/Support</a></li>
-                            <li><a href="index.html"><span className="icon-Power-3"></span>Log Out</a></li>
+                            <li><a href="/" onClick={logout}><span className="icon-Power-3"></span>Log Out</a></li>
                         </ul>
                     </div>
                     {/* close #header-user-profile-menu */}
@@ -329,5 +331,9 @@ const Header: React.FC<Props> = (props) => {
         );
     }
 };
-
-export default Header;
+const mapStateToProps = (state:any) => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated
+    };
+}
+export default connect(mapStateToProps,null)(Header);

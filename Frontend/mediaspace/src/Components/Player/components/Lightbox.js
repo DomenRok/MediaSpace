@@ -138,7 +138,7 @@ class Lightbox extends DOMElement{
 
 		// bind the escape key
 		util.addEventListener(window,'keyup',(e) => {
-			if(e.keyCode == 27)
+			if(e.keyCode === 27)
 			{
 				this.close();
 			}

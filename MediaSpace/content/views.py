@@ -3,7 +3,9 @@ from rest_framework import generics
 from . import models
 from . import serializers
 
-from django.db.models import Q
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -42,7 +44,7 @@ class RatingList(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     queryset = models.Rating.objects.all()
-    serializer_class = serializers.RatingSerializer
+    serializer_class = serializers.CommentRatingSerializer
 
 
 class RatingDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -51,7 +53,7 @@ class RatingDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
 
     queryset = models.Rating.objects.all()
-    serializer_class = serializers.RatingSerializer
+    serializer_class = serializers.CommentRatingSerializer
 
 
 class RatingCreate(generics.CreateAPIView):
@@ -60,7 +62,7 @@ class RatingCreate(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     queryset = models.Rating.objects.all()
-    serializer_class = serializers.RatingSerializer
+    serializer_class = serializers.CommentRatingSerializer
 
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -70,3 +72,21 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = models.Movie.objects.all()
     serializer_class = serializers.MovieWithCommentsSerializer
+
+
+@api_view()
+def get_ratings_per_movie(request, pk):
+    ratings = models.Rating.objects.filter(movie__exact=pk)
+    Ser = serializers.RatingSerializer(ratings, many=True)
+
+    return Response(Ser.data)
+
+
+@api_view()
+def get_comments_per_movie(request, pk):
+    ratings = models.Rating.objects.filter(movie__exact=pk).exclude(comment__exact="")
+    Ser = serializers.CommentSerializer(ratings, many=True)
+
+    return Response(Ser.data)
+
+

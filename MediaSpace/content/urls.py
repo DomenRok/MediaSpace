@@ -15,6 +15,10 @@ urlpatterns = [
     path('rating', csrf_exempt(views.RatingList.as_view())),
     path('rating/<int:pk>', csrf_exempt(views.RatingDetail.as_view())),
     path('rating/create', csrf_exempt(views.RatingCreate.as_view())),
-    ]
+    path('genre', csrf_exempt(views.GenreList.as_view())),
+    path('genre/<int:pk>', csrf_exempt(views.GenreDetail.as_view())),
+    path('genre/create', csrf_exempt(views.GenreCreate.as_view()))
+
+]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

@@ -12,6 +12,7 @@ import { Redirect } from "react-router";
 }*/
 
 const Home = (props: any) => {
+
     const slides = [{
         heading: "Welcome to MediaSpace",
         caption: "Random slide",

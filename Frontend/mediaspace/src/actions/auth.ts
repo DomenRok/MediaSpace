@@ -16,7 +16,7 @@ export const loadUser = () => {
 
 export const login = (formDetails: IUser) => {
     return (dispatch: any, getState: any) => {
-        let headers = {"Content-Type": "application/json", "mode": "no-cors"};
+        let headers = {"Content-Type": "application/json"};
         let body = JSON.stringify(formDetails);
 
         return fetch(APIURL+"/login/", {headers, body, method: "POST"})

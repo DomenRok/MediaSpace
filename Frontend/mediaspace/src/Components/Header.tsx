@@ -86,9 +86,15 @@ const Header: React.FC = (props: any) => {
         });*/
         const clickHeadInfo = (id: string) => {
             let $this = $(id);
-            if ($this.hasClass('active')) {
-                $this.removeClass('active').addClass('hide');
-            } else {
+            //var classes = ($this.attr('class') as any).split(" ");
+            //console.log(classes);
+            if (!$this.hasClass('hide')) {
+                console.log("hide");
+                $this.removeClass('active');
+                $this.addClass('hide');
+            } else if($this.hasClass('hide')){
+                console.log("active");
+                $this.removeClass('hide');
                 $this.addClass('active');
             }
         };

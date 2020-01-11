@@ -71,13 +71,13 @@ class CosinePredictor:
         self.rez["movieID"] = unknown
         self.rez.set_index("movieID", inplace=True)
 
-        movieAvg = self.df.T.loc[known, :].T.apply(lambda x: x.mean())
+        #movieAvg = self.df.T.loc[known, :].T.apply(lambda x: x.mean())
         #movieAvg.apply(lambda x: x.mean())
-        movieAvg = knownS - movieAvg
+        movieAvg = knownS# - movieAvg
 
         for x in unknown:
-            a = (self.similarityMatrix[x].dropna() * movieAvg).sum()
-            b = self.similarityMatrix[x].dropna().sum()
+            a = (self.similarityMatrix.loc[known][x].dropna() * movieAvg).sum()
+            b = self.similarityMatrix[x].loc[known].dropna().sum()
             self.rez.loc[x] = a/b#self.df[x].mean() + (a / b)
 
         return self.rez.to_dict()["rating"]

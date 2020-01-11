@@ -20,11 +20,11 @@ const Home = (props: any) => {
         bgImage: "https://skrn.progressionstudios.com/wp-content/uploads/2018/07/slide-1-landing.jpg",
         black: false
     }, {
-        heading: "Star Wars",
+        heading: "Free trial",
         caption: "See the most exciting movies for free first month. Only on MediaSpace",
         button: "Watch now",
         href: "star-wars",
-        bgImage: "http://i3.ytimg.com/vi/8Qn_spdM5Zg/maxresdefault.jpg",
+        bgImage: "https://miro.medium.com/max/7680/1*hzavzrdEG6oj3sN747B1yA.jpeg",
         black: true
     }];
 

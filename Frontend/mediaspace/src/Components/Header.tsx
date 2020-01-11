@@ -89,13 +89,9 @@ const Header: React.FC = (props: any) => {
             let $this = $(id);
             //var classes = ($this.attr('class') as any).split(" ");
             //console.log(classes);
-            if (!$this.hasClass('hide')) {
-                console.log("hide");
-                $this.removeClass('active');
-                $this.addClass('hide');
-            } else if($this.hasClass('hide')){
-                console.log("active");
-                $this.removeClass('hide');
+            if ($this.hasClass('active')) {
+                $this.removeClass('active').addClass('hide');
+            } else {
                 $this.addClass('active');
             }
         };

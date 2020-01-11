@@ -15,7 +15,7 @@ export const loadUser = () => {
 }
 
 export const login = (formDetails: IUser) => {
-    (document.getElementsByClassName("modal-backdrop")[0].parentNode as any).removeChild(document.getElementsByClassName("modal-backdrop")[0]);
+
     return (dispatch: any, getState: any) => {
         let headers = {"Content-Type": "application/json"};
         let body = JSON.stringify(formDetails);
@@ -33,13 +33,14 @@ export const login = (formDetails: IUser) => {
             })
             .then((res:any) => {
                 if (res.status === 200) {
-
                     dispatch({type: 'LOGIN_SUCCESSFUL', data: res.data, user: formDetails.username });
                     return res.data;
                 } else if (res.status === 403 || res.status === 401) {
+                    (document.getElementsByClassName("modal-backdrop")[0].parentNode as any).removeChild(document.getElementsByClassName("modal-backdrop")[0]);
                     dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
                     throw res.data;
                 } else {
+                    (document.getElementsByClassName("modal-backdrop")[0].parentNode as any).removeChild(document.getElementsByClassName("modal-backdrop")[0]);
                     console.log("failed login");
                     dispatch({type: "LOGIN_FAILED", data: res.data});
                     throw res.data;

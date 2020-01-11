@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from 'react-router-dom';
 import {SideBarNav} from "./SidebarNav";
 import {connect} from "react-redux";
+import {logout} from "../actions/auth";
 
 const Header: React.FC = (props: any) => {
     if (!props.isAuthenticated) {
@@ -233,7 +234,7 @@ const Header: React.FC = (props: any) => {
                             <li><a href="dashboard-account.html"><span className="icon-Gears"></span>Account Details</a>
                             </li>
                             <li><a href="#!"><span className="icon-Life-Safer"></span>Help/Support</a></li>
-                            <li><a href="index.html"><span className="icon-Power-3"></span>Log Out</a></li>
+                            <li><a href="/" onClick={logout}><span className="icon-Power-3"></span>Log Out</a></li>
                         </ul>
                     </div>
                     {/* close #header-user-profile-menu */}

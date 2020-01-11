@@ -49,7 +49,7 @@ class LightboxTrigger extends DOMElement {
 			e.preventDefault();
 
 			// Launch the lightbox
-			if (document.getElementsByClassName("afterglow-lightbox-wrapper").length == 0) {
+			if (document.getElementsByClassName("afterglow-lightbox-wrapper").length === 0) {
 				this.trigger();
 			}
 

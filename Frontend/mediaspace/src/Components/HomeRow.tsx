@@ -12,13 +12,13 @@ export const HomeRow = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-md my-auto">
-                        <img src="http://via.placeholder.com/705x618" className="img-fluid" alt="Watch in Any Devices"/>
+                        <img src="images/mobile_logo_photo.png" className="img-fluid" alt="Watch in Any Devices"/>
                     </div>
                     <div className="col-md my-auto">
                         <h2 className="short-border-bottom">Watch On Any Device</h2>
-                        <p>Lorem ipsum dolor sit amet conjecture advising null pellentesquemagna a convallis nula
-                            facilisi. Praesent consequat eget elementumconsectetur. Nullam interdum, quam ac sagittis
-                            facilisis sapien dolor ipsum consequat ellit tristique senectus</p>
+                        <p>You can watch your favourite movies or TV shows anywhere, on any device you want. Mediaspace
+                            is not platform dependant and works on all sorts of devices ranging from phones, tablets,
+                            TVs to computers.</p>
                         <div style={{height: '15px'}}></div>
                         <p><a className="btn btn-green-pro" href="signup-step1.html" role="button">Learn More</a></p>
                     </div>
@@ -27,27 +27,26 @@ export const HomeRow = () => {
                 <div className="row">
                     <div className="col-md my-auto">
                         <h2 className="short-border-bottom">Make Your Own Playlist</h2>
-                        <p>Curabitur at lobortis leo varius tellus. Phasellus id purus placeratfinibus diam a, feugiat
-                            massa. Donec porta orci lectus, ut lacinia risus fringilla nulla facilisi suspendisse eget
-                            id justo ac magna finibus dignissim. Integer purus feugiat gravida convalis,</p>
+                        <p>Mediaspace makes it easy for you to make your own personalized playlists that you can share
+                            with your friends. Pick up your device and start watching movies or listening to music
+                            where you left off. </p>
                         <div style={{height: '15px'}}></div>
                         <p><a className="btn btn-green-pro" href="signup-step1.html" role="button">Start Watching</a>
                         </p>
                     </div>
                     <div className="col-md my-auto">
-                        <img src="http://via.placeholder.com/705x618" className="img-fluid"
+                        <img src="images/playlist_photo.png" className="img-fluid"
                              alt="Make Your Own Playlist"/>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md my-auto">
-                        <img src="http://via.placeholder.com/705x618" className="img-fluid" alt="Watch in Ultra HD"/>
+                        <img src="https://cdn.vizio.com/images/product-pages/Eseries/2017/e_series_hd_uhd_2017.jpg" className="img-fluid" alt="Watch in Ultra HD"/>
                     </div>
                     <div className="col-md my-auto">
                         <h2 className="short-border-bottom">Watch in Ultra HD</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing nula pellentesquemagna a convallis nula
-                            facilisi. Praesent consequat eget elementumconsectetur. Nullam interdum, quam ac sagittis
-                            facilisis sapien dolor ipsum consequat ellit tristique senectus</p>
+                        <p>With our excelent streaming service you can watch movies and TV shows in qualities up to UHD
+                            without any lag or quality loss.</p>
                         <div style={{height: '15px'}}></div>
                         <p><a className="btn btn-green-pro" href="signup-step1.html" role="button">Start Your Free
                             Trial</a></p>

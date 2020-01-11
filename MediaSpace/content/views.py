@@ -76,6 +76,7 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
 
 @api_view()
 def get_ratings_per_movie(request, pk):
+    """ Returns all ratings for a given movie_id"""
     ratings = models.Rating.objects.filter(movie__exact=pk)
     Ser = serializers.RatingSerializer(ratings, many=True)
 
@@ -84,6 +85,7 @@ def get_ratings_per_movie(request, pk):
 
 @api_view()
 def get_comments_per_movie(request, pk):
+    """ Returns all comments for a given movie_id. """
     ratings = models.Rating.objects.filter(movie__exact=pk).exclude(comment__exact="")
     Ser = serializers.CommentSerializer(ratings, many=True)
 

@@ -43,6 +43,7 @@ export const DashBoardSlider = (props: Props) => {
             (window as any).afterglow = new Afterglow();
             (window as any).afterglow.init();
         }
+
     }, []);
     const style = {
         backgroundImage: 'url(http://i3.ytimg.com/vi/8Qn_spdM5Zg/maxresdefault.jpg)',

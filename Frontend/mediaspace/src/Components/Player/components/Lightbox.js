@@ -19,6 +19,8 @@ class Lightbox extends DOMElement{
 		this.addClass("afterglow-lightbox-wrapper");
 		this.build();
 		this.bindEmitter();
+
+
 	}
 
 	/**
@@ -28,7 +30,7 @@ class Lightbox extends DOMElement{
 	build(){
 		// Prepare the lightbox elements
 		let cover = this.buildCover();
-		let lightbox = this.buildLightbox(); 
+		let lightbox = this.buildLightbox();
 		
 		this.appendDomElement(cover, 'cover');
 		this.appendDomElement(lightbox, 'lightbox');

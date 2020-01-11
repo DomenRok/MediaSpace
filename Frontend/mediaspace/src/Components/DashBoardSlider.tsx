@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import Afterglow from "./Player/Afterglow";
 import "flexslider";
+import GenreListIcons from "./GenreListIcons";
 
 export interface Slider {
     id: Number;
@@ -38,11 +39,10 @@ export const DashBoardSlider = (props: Props) => {
                 $this.addClass('active');
             }
         });
-        (window as any).afterglow = new Afterglow();
-        (window as any).afterglow.init();
-        document.addEventListener("DOMContentLoaded", function() {
+        if ((window as any).afterglow instanceof Afterglow) {
+            (window as any).afterglow = new Afterglow();
             (window as any).afterglow.init();
-        });
+        }
     }, []);
     const style = {
         backgroundImage: 'url(http://i3.ytimg.com/vi/8Qn_spdM5Zg/maxresdefault.jpg)',
@@ -64,7 +64,7 @@ export const DashBoardSlider = (props: Props) => {
         if (supportedExt.has(slide.video.split('.').pop() as string)) {
             return (<>
                 <video id={"VideoLightbox-" + slide.id}
-                       poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg?v1" width="960"
+                       poster={slide.bgImage} width="960"
                        height="540">
                     <source src={slide.video} type="video/mp4"/>
                 </video>
@@ -108,16 +108,16 @@ export const DashBoardSlider = (props: Props) => {
                             ><span style={{color: "#42b740;"}}>8.6</span></div>
                             <div className="progression-studios-slider-dashboard-caption-width">
                                 <div className="progression-studios-slider-caption-align">
-                                    <h6>Movie</h6>
+                                    <h6 className={(slide.black || '') && "light-fonts-pro"}>Movie</h6>
                                     <ul className="progression-studios-slider-rating">
                                         <li>PG-13</li>
                                         <li>HD</li>
                                     </ul>
-                                    <h2><Link to="dashboard-movie-profile.html">{slide.title}</Link></h2>
+                                    <h2 className={(slide.black || '') && "light-fonts-pro"}><Link to="dashboard-movie-profile.html">{slide.title}</Link></h2>
                                     <ul className="progression-studios-slider-meta">
-                                        <li>Documentary</li>
+                                        <li>{slide.genre}</li>
                                     </ul>
-                                    <p className="progression-studios-slider-description">{slide.description}</p>
+                                    <p className={"progression-studios-slider-description "+((slide.black || '') && "light-fonts-pro")}>{slide.description}</p>
 
                                     <a className="btn btn-green-pro btn-slider-pro btn-shadow-pro afterglow"
                                        href={"#VideoLightbox-" + slide.id}><i className="fas fa-play"></i> Watch Trailer</a>
@@ -151,56 +151,7 @@ export const DashBoardSlider = (props: Props) => {
                 {slides}
             </ul>
         </div>
-        <ul className="dashboard-genres-pro">
-        <li>
-        <img src="images/genres/drama.png" alt="Drama"/>
-        <h6>Drama</h6>
-        </li>
-        <li className="active">
-        <img src="images/genres/comedy.png" alt="Comedy"/>
-        <h6>Comedy</h6>
-        </li>
-        <li>
-        <img src="images/genres/action.png" alt="Action"/>
-        <h6>Action</h6>
-        </li>
-        <li>
-        <img src="images/genres/romance.png" alt="Romance"/>
-        <h6>Romance</h6>
-        </li>
-        <li>
-        <img src="images/genres/horror.png" alt="Horror"/>
-        <h6>Horror</h6>
-        </li>
-        <li>
-        <img src="images/genres/fantasy.png" alt="Fantasy"/>
-        <h6>Fantasy</h6>
-        </li>
-        <li>
-        <img src="images/genres/sci-fi.png" alt="Sci-Fi"/>
-        <h6>Sci-Fi</h6>
-        </li>
-        <li>
-        <img src="images/genres/thriller.png" alt="Thriller"/>
-        <h6>Thriller</h6>
-        </li>
-        <li>
-        <img src="images/genres/western.png" alt="Western"/>
-        <h6>Western</h6>
-        </li>
-        <li>
-        <img src="images/genres/adventure.png" alt="Adventure"/>
-        <h6>Adventure</h6>
-        </li>
-        <li>
-        <img src="images/genres/animation.png" alt="Animation"/>
-        <h6>Animation</h6>
-        </li>
-        <li>
-        <img src="images/genres/documentary.png" alt="Documentary"/>
-        <h6>Documentary</h6>
-        </li>
-        </ul>
+            <GenreListIcons/>
             </>
     );
 }

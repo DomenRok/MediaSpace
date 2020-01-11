@@ -17,7 +17,17 @@ export const Dashboard: React.FC<Props> = (props) => {
         id: 15,
         video: "http://afterglowplayer.com/sandbox/v1/afterglow_local_hd.mp4"
     };
-    var sliders = [slider];
+    const slider2 = {
+        title: "Creed",
+        bgImage: "https://wallpapersite.com/images/pages/pic_w/14567.jpg",
+        black: true,
+        description: "The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.",
+        genre: "drama",
+        href: "neki",
+        id: 16,
+        video: "http://afterglowplayer.com/sandbox/v1/afterglow_local_hd.mp4"
+    }
+    var sliders = [slider,slider2];
 
     return (
         <div id="sidebar-bg">

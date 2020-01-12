@@ -18,7 +18,8 @@ urlpatterns = [
     path('genre', csrf_exempt(views.GenreList.as_view())),
     path('genre/movie/<int:pk>', csrf_exempt(views.get_movies_per_genre)),
     path('genre/<int:pk>', csrf_exempt(views.GenreDetail.as_view())),
-    path('genre/create', csrf_exempt(views.GenreCreate.as_view()))
+    path('genre/create', csrf_exempt(views.GenreCreate.as_view())),
+    path('recommend', csrf_exempt(views.recommend_random))
 
 ]
 

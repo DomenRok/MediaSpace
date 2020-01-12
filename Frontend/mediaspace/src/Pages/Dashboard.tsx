@@ -37,8 +37,8 @@ const Dashboard: React.FC = (props: any) => {
     if (recommendedSlider.length !== 3) return null;
 
     let listMovies = props.movies.map((movies: any) => <ListMovies movieList={movies} title={"Other"}/>);
-   /* const recommendedList = [<ListMovies movieList={props.recommended} title={"Recommended for you"}/>];*/
-    //listMovies = [...recommendedList, ...listMovies];
+    const recommendedList = [<ListMovies movieList={props.recommended} title={"Recommended for you"}/>];
+    listMovies = [...recommendedList, ...listMovies];
 
     const loadMore = (e: any) => {
         e.preventDefault();

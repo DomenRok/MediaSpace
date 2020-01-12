@@ -31,7 +31,7 @@ const Dashboard: React.FC = (props: any) => {
         genre: "drama",
         href: "neki",
         id: 16,
-        video: "http://afterglowplayer.com/sandbox/v1/afterglow_local_hd.mp4"
+        video: "https://www.youtube.com/watch?v=3LPANjHlPxo"
     }
     var sliders = [slider,slider2];
 

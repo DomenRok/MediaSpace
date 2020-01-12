@@ -18,6 +18,7 @@ class Movie(models.Model):
     link = models.URLField(null=True, blank=True)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, blank=True, null=True)
     users = models.ManyToManyField(CustomUser, through='Rating')
+    recommendations = models.ManyToManyField(CustomUser, through='Recommendation', related_name='recommendations')
     imdb_id = models.IntegerField(blank=True, null=True)
     thumbnail_url = models.URLField(blank=True, null=True)
 
@@ -37,3 +38,10 @@ class Rating(models.Model):
 
     def __str__(self):
         return f"{self.movie}: {self.rating}"
+
+
+class Recommendation(models.Model):
+    person = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+

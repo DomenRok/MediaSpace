@@ -104,7 +104,7 @@ def get_comments_per_movie(request, pk):
 
 @api_view()
 def get_movies_per_genre(request, pk):
-    """ Returns all comments for a given movie_id. """
+    """ Returns all movies for a given genre_id. """
     paginator = PageNumberPagination()
     paginator.page_size = 20
 

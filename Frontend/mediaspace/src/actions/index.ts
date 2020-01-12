@@ -1,4 +1,4 @@
-import * as notes from "./notes";
+import * as movies from "./movies";
 import * as auth from "./auth";
 
-export {notes, auth}
+export {movies, auth}

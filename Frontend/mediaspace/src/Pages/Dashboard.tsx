@@ -1,12 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Header from "../Components/Header";
 import {DashBoardSlider, Slider} from "../Components/DashBoardSlider";
 import {Redirect} from "react-router";
-interface Props {
-    loggedIn: boolean
-}
+import GenreListIcons from "../Components/GenreListIcons";
+import {movies} from "../actions";
+import {connect} from "react-redux";
+import ListMovies from "../Components/ListMovies";
 
-export const Dashboard: React.FC<Props> = (props) => {
+const Dashboard: React.FC = (props: any) => {
+    useEffect(() => {
+        props.getGenres();
+        props.fetchMovies();
+    }, []);
+
     const slider = {
         title: "Film",
         bgImage: "https://cdn.hipwallpaper.com/i/96/4/ecEQiJ.jpeg",
@@ -34,7 +40,32 @@ export const Dashboard: React.FC<Props> = (props) => {
             <Header/>
             <main id="col-main">
             <DashBoardSlider slides={sliders}/>
+            <GenreListIcons genreList={props.genres}/>
+            <div className="clearfix"></div>
+                <div className="dashboard-container">
+                <ListMovies movieList={props.movies}/>
+                </div>
             </main>
         </div>
     );
-}
+};
+
+const mapStateToProps = (state:any) => {
+    return {
+        genres: state.movies.genres,
+        movies: state.movies.movies
+    };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        fetchMovies: () => {
+            return dispatch(movies.fetchMovies());
+        },
+        getGenres: () => {
+            return dispatch(movies.getGenres());
+        }
+    };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(Dashboard)

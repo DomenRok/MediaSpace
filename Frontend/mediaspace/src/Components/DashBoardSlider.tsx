@@ -144,13 +144,10 @@ export const DashBoardSlider = (props: Props) => {
     });
 
     return (
-        <>
         <div className="flexslider progression-studios-dashboard-slider">
             <ul className="slides">
                 {slides}
             </ul>
         </div>
-            <GenreListIcons/>
-            </>
     );
 }

@@ -73,7 +73,7 @@ export const DashBoardSlider = (props: Props) => {
             if (slide.video.includes("youtube")) {
                 return (<>
                     <video id={"VideoLightbox-" + slide.id} width="960" height="540"
-                           data-vimeo-id={76979871}></video>
+                           data-youtube-id={slide.video}></video>
                     </>
                 )
             }

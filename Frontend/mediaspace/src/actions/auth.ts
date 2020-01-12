@@ -16,11 +16,10 @@ export const loadUser = () => {
 }
 
 export const login = (formDetails: IUser) => {
-
     return (dispatch: any, getState: any) => {
         let headers = {"Content-Type": "application/json"};
         let body = JSON.stringify(formDetails);
-
+        (document.getElementsByClassName("modal-backdrop")[0].parentNode as any).removeChild(document.getElementsByClassName("modal-backdrop")[0]);
         return fetch(APIURL+"/login", {headers, body, method: "POST"})
             .then(res => {
                 if (res.status < 500) {
@@ -34,12 +33,11 @@ export const login = (formDetails: IUser) => {
             })
             .then((res:any) => {
                 if (res.status === 200) {
-                    (document.getElementsByClassName("modal-backdrop")[0].parentNode as any).removeChild(document.getElementsByClassName("modal-backdrop")[0]);
-                    document.body.className = '';
-                    dispatch({type: 'LOGIN_SUCCESSFUL', data: res.data, user: formDetails.username });
+                    dispatch({type: 'LOGIN_SUCCESSFUL', data: res.data });
                     return res.data;
-                } else if (res.status === 403 || res.status === 401) {
+                } else if (res.status === 403 || res.status === 401 || res.status === 404) {
                     dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
+                    $('#LoginModal').modal('show');
                     throw res.data;
                 } else {
                     console.log("failed login");

@@ -10,9 +10,8 @@ interface MovieDetail{
 	movieinfo: any
 }
 
-const MovieProfilePlayer: React.FC<MovieDetail> = (props: MovieDetail) => {
-
-        return (
+const MovieProfilePlayer: React.FC = (props: any) => {
+ 	return (
             <>
             <div id="movie-detail-header-pro" className="placeholderImage">
 				
@@ -76,9 +75,4 @@ const MovieProfilePlayer: React.FC<MovieDetail> = (props: MovieDetail) => {
 
 };
 
-const mapStateToProps = (state:any) => {
-    return {
-        isAuthenticated: state.auth.isAuthenticated
-    };
-}
-export default connect(mapStateToProps,null)(MovieProfilePlayer);
+export default MovieProfilePlayer;

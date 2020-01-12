@@ -1,8 +1,6 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import Afterglow from "./Player/Afterglow";
-import "flexslider";
-import GenreListIcons from "./GenreListIcons";
 
 export interface Slider {
     id: string|number;
@@ -19,17 +17,18 @@ interface Props {
 }
 
 export const DashBoardSlider = (props: Props) => {
+    let cnt = 0;
     useEffect(() => {
         $('.progression-studios-dashboard-slider').flexslider({
-            slideshow: false,  		/* Autoplay True/False */
-            slideshowSpeed: 8000,	/* Autoplay Speed */
-            animation: "fade",		/* Slideshow Transition Animation */
-            animationSpeed: 800, 	/* Slide Transition Speed */
-            directionNav: true,		/* Left/Right Navigation True/False */
-            controlNav: true,		/* Bullet Navigaion True/False */
-            prevText: "",
-            nextText: "",
-        });
+                slideshow: false,  		/* Autoplay True/False */
+                slideshowSpeed: 8000,	/* Autoplay Speed */
+                animation: "fade",		/* Slideshow Transition Animation */
+                animationSpeed: 800, 	/* Slide Transition Speed */
+                directionNav: true,		/* Left/Right Navigation True/False */
+                controlNav: true,		/* Bullet Navigaion True/False */
+                prevText: "",
+                nextText: "",
+            });
         $(".progression-studios-slider-more-options").hover(function() {
             var $this = $(".progression-studios-slider-more-options");
             if ($this.hasClass('active')) {
@@ -40,8 +39,8 @@ export const DashBoardSlider = (props: Props) => {
         });
         (window as any).afterglow = new Afterglow();
         (window as any).afterglow.init();
-
-    }, [props.slides]);
+}, []);
+    console.log(cnt);
     const style = {
         backgroundImage: 'url(http://i3.ytimg.com/vi/8Qn_spdM5Zg/maxresdefault.jpg)',
         backgroundColor: '#111015'

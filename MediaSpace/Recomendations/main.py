@@ -8,9 +8,9 @@ import MySQLdb as mysql
 class RecomendationService:
     def favouriteMovies(self, user):
 
-        df = DataUtils.return_dataframe(1000)
+        df = DataUtils.return_dataframe(100)
         print("Vrnena matrika")
-        uid = Recommend.UserItemData(df, 1000)
+        uid = Recommend.UserItemData(df, 100)
         print("Matrix read")
         preds = [SlopOne_Predictor.SlopOnePredictor]#, Cosine_Predictor.CosinePredictor]
         pred = random.choice(preds)()
@@ -41,9 +41,9 @@ class RecomendationService:
         mydb.close()
 
     def similarMoviesFillAll(self):
-        df = DataUtils.return_dataframe(1000)
+        df = DataUtils.return_dataframe(100)
         print("Vrnena matrika")
-        uid = Recommend.UserItemData(df, 1000)
+        uid = Recommend.UserItemData(df, 100)
         print("Matrix read")
         cosine = Cosine_Predictor.CosinePredictor()
         cosine.fit(uid)
@@ -67,13 +67,12 @@ class RecomendationService:
             query = ("DELETE FROM content_similarity WHERE movie_from_id = {}".format(i))
             cursor.execute(query)
             mydb.commit()
-            similar = group.head(10)
+            similar = group.head(20)
             for _, y in similar.iterrows():
                 query = ("INSERT INTO content_similarity(similarity, movie_from_id, movie_to_id) VALUES (%s, %s, %s)")
                 cursor.execute(query, (y["similarity"], i, y["movieID_2"]))
 
-            mydb.commit()
-
+        mydb.commit()
         cursor.close()
         mydb.close()
 
@@ -84,7 +83,7 @@ class RecomendationService:
 
 
 
-RecomendationService().favouriteMovies(71535)
+#RecomendationService().favouriteMovies(71535)
 #RecomendationService().similarMoviesFillAll()
 
 

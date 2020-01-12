@@ -26,17 +26,21 @@ class RecomendationService:
             passwd="0xoEb0*&rBmH",
             db='MediaSpace'
         )
+
         cursor = mydb.cursor()
+        query = ("DELETE FROM content_recommendation WHERE person_id = {}".format(user))
+        cursor.execute(query)
+        mydb.commit()
+
         for idmovie in rec_items.keys():
-            print(idmovie)
             query = ("INSERT INTO content_recommendation(movie_id, person_id) VALUES (%s, %s)")
-            cursor.execute(query, (user, rec_items[idmovie]))
+            cursor.execute(query, (idmovie, user))
 
         mydb.commit()
         cursor.close()
         mydb.close()
 
-RecomendationService().favouriteMovies(71535)
+#RecomendationService().favouriteMovies(71535)
 
 
 

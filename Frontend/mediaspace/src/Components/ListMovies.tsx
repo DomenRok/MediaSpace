@@ -3,7 +3,8 @@ import MovieItem from "./MovieItem";
 import {Link} from "react-router-dom";
 
 interface MovieList {
-    movieList: any
+    movieList: any,
+    title: string
 }
 
 const ListMovies: React.FC<MovieList> = (props: MovieList) => {
@@ -16,7 +17,7 @@ const ListMovies: React.FC<MovieList> = (props: MovieList) => {
 
     return (
         <>
-            <h4 className="heading-extra-margin-bottom">Comedies</h4>
+            <h4 className="heading-extra-margin-bottom">{props.title}</h4>
             <div className="row">
                 {movieList}
             </div>

@@ -5,11 +5,10 @@ import "flexslider";
 import GenreListIcons from "./GenreListIcons";
 
 export interface Slider {
-    id: Number;
+    id: string|number;
     title: string;
     description: string;
     video: string;
-    href: string;
     bgImage: string;
     genre: string;
     black: boolean;
@@ -42,7 +41,7 @@ export const DashBoardSlider = (props: Props) => {
         (window as any).afterglow = new Afterglow();
         (window as any).afterglow.init();
 
-    }, []);
+    }, [props.slides]);
     const style = {
         backgroundImage: 'url(http://i3.ytimg.com/vi/8Qn_spdM5Zg/maxresdefault.jpg)',
         backgroundColor: '#111015'
@@ -73,7 +72,7 @@ export const DashBoardSlider = (props: Props) => {
             if (slide.video.includes("youtube")) {
                 return (<>
                     <video id={"VideoLightbox-" + slide.id} width="960" height="540"
-                           data-youtube-id={slide.video}></video>
+                           data-youtube-id={getId(slide.video)}></video>
                     </>
                 )
             }
@@ -83,7 +82,7 @@ export const DashBoardSlider = (props: Props) => {
     const slides = props.slides.map((slide) => {
         let tempStyle = {...style};
         tempStyle.backgroundImage = 'url(' + slide.bgImage + ')';
-        return (<li className="progression_studios_animate_left" key={slide.href}>
+        return (<li className="progression_studios_animate_left" key={slide.id}>
             <div className="progression-studios-slider-dashboard-image-background"
                  style={tempStyle}>
                 <div className="progression-studios-slider-display-table">
@@ -112,7 +111,7 @@ export const DashBoardSlider = (props: Props) => {
                                         <li>PG-13</li>
                                         <li>HD</li>
                                     </ul>
-                                    <h2 className={(slide.black || '') && "light-fonts-pro"}><Link to="dashboard-movie-profile.html">{slide.title}</Link></h2>
+                                    <h2 className={(slide.black || '') && "light-fonts-pro"}><Link to={"/browse/"+slide.id}>{slide.title}</Link></h2>
                                     <ul className="progression-studios-slider-meta">
                                         <li>{slide.genre}</li>
                                     </ul>

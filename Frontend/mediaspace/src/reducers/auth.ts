@@ -15,7 +15,7 @@ export default function auth(state=initialState, action: any) {
             return {...state, isLoading: true};
 
         case 'USER_LOADED':
-            return {...state, isAuthenticated: true, isLoading: false, user: action.user};
+            return {...state, isAuthenticated: true, isLoading: false};
 
         case 'LOGIN_STORAGE':
             return {...state, isAuthenticated: true};

@@ -16,6 +16,7 @@ urlpatterns = [
     path('rating/<int:pk>', csrf_exempt(views.RatingDetail.as_view())),
     path('rating/create', csrf_exempt(views.RatingCreate.as_view())),
     path('genre', csrf_exempt(views.GenreList.as_view())),
+    path('genre/movie/<int:pk>', csrf_exempt(views.get_movies_per_genre)),
     path('genre/<int:pk>', csrf_exempt(views.GenreDetail.as_view())),
     path('genre/create', csrf_exempt(views.GenreCreate.as_view()))
 

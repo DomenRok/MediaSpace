@@ -131,6 +131,7 @@ def recommend_random(request):
 
     return paginator.get_paginated_response(ser.data)
 
+
 @api_view()
 def recommend_for_user(request, username):
     """ Returns 20 movies for the specified user_id. """
@@ -149,3 +150,20 @@ def recommend_for_user(request, username):
 
     return paginator.get_paginated_response(ser.data)
 
+
+@api_view()
+def similiar_to(request, movie_id):
+    """ returns similiar movies for the given movie_id. """
+    paginator = PageNumberPagination()
+    paginator.page_size = 3
+
+    try:
+        movie_ids = models.Similarity.objects.filter(movie_from_id=movie_id).values_list('movie_to_id', flat=True)
+        movies = models.Movie.objects.filter(id__in=movie_ids).order_by('?')
+    except Exception as e:
+        return Response({"Details": "Error with recommendations: {}".format(e)})
+
+    result_page = paginator.paginate_queryset(movies, request)
+    ser = serializers.MovieSerializer(result_page, many=True)
+
+    return paginator.get_paginated_response(ser.data)

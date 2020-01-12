@@ -23,7 +23,6 @@ class Movie(models.Model):
     thumbnail_url = models.URLField(blank=True, null=True)
     similarity = models.ManyToManyField('self', through='Similarity', symmetrical=False)
 
-
     def __str__(self):
         return f"{self.title}"
 

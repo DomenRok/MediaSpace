@@ -6,6 +6,9 @@ import {logout} from "../actions/auth";
 import $ from "jquery";
 import "jquery-asRange";
 
+interface MovieDetail{
+	movieinfo: any
+}
 
 const MovieProfilePlayer: React.FC = (props: any) => {
  	return (
@@ -25,7 +28,7 @@ const MovieProfilePlayer: React.FC = (props: any) => {
 				
 				<a className="movie-detail-header-play-btn afterglow" href="#VideoLightbox-1"><i className="fas fa-play"></i></a>
 				
-	         <video id="VideoLightbox-1"  poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg?v1" width="960" height="540">
+	         <video id="VideoLightbox-1"  poster={props.movieinfo.thumbnail_url} width="960" height="540">
 	             <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.mp4" type="video/mp4" />
 	             <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.webm" type="video/webm" />
 	         </video>

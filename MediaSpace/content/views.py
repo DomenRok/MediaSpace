@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 
 from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
-
+from rest_framework.response import Response
 
 class GenreList(generics.ListAPIView):
     """ Lists all genres. """
@@ -125,6 +125,23 @@ def recommend_random(request):
     count = models.Movie.objects.count()
     rnd = random.randint(0, count-1)
     movies = models.Movie.objects.all()[rnd:rnd+10]
+
+    result_page = paginator.paginate_queryset(movies, request)
+    ser = serializers.MovieSerializer(result_page, many=True)
+
+    return paginator.get_paginated_response(ser.data)
+
+@api_view()
+def recommend_for_user(request, user_id):
+    """ Returns 20 movies for the specified user_id. """
+    paginator = PageNumberPagination()
+    paginator.page_size = 20
+
+    try:
+        movie_ids = models.Recommendation.objects.filter(person_id=user_id).values_list('movie_id', flat=True)
+        movies = models.Movie.objects.filter(id__in=movie_ids)[0:20]
+    except Exception as e:
+        return Response({"Details": "Error with recommendations: {}".format(e)})
 
     result_page = paginator.paginate_queryset(movies, request)
     ser = serializers.MovieSerializer(result_page, many=True)

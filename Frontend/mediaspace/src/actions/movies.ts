@@ -27,15 +27,15 @@ export const getGenres = () => {
     };
 };
 
-export const fetchMovies = () => {
+export const fetchMovies = (next = "") => {
     return (dispatch: any, getState: any) => {
         let headers = {"Content-Type": "application/json"} as any;
         let {token} = getState().auth;
         if (token) {
             headers["Authorization"] = `Token ${token}`;
         }
-
-        return fetch("http://localhost:8000/api/v1/content/movie", {headers, })
+        let url = (next) ? next : "http://localhost:8000/api/v1/content/movie";
+        return fetch(url, {headers, })
             .then(res => {
                 if (res.status < 500) {
                     return res.json().then(data => {

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {ReactEventHandler, ReactHTML, useEffect, useState} from "react";
 import Header from "../Components/Header";
 import {DashBoardSlider, Slider} from "../Components/DashBoardSlider";
 import {Redirect} from "react-router";
@@ -6,12 +6,20 @@ import GenreListIcons from "../Components/GenreListIcons";
 import {movies} from "../actions";
 import {connect} from "react-redux";
 import ListMovies from "../Components/ListMovies";
+import {Link} from "react-router-dom";
 
 const Dashboard: React.FC = (props: any) => {
+    const [movieLists, setMovieLists] = useState([]);
     useEffect(() => {
         props.getGenres();
         props.fetchMovies();
     }, []);
+
+    useEffect(() => {
+        if (props.movies !== movieLists) setMovieLists(movieLists.concat(props.movies));
+    }, [props.movies]);
+
+    if (!props.movies) return null;
 
     const slider = {
         title: "Film",
@@ -33,7 +41,16 @@ const Dashboard: React.FC = (props: any) => {
         id: 16,
         video: "https://www.youtube.com/watch?v=3LPANjHlPxo"
     }
-    var sliders = [slider,slider2];
+    const sliders = [slider,slider2];
+
+    const listMovies = movieLists.map((movies: any) => {
+        return <ListMovies movieList={movies}/>
+    });
+
+    const loadMore = (e: any) => {
+        e.preventDefault();
+        props.fetchMovies(props.movies.next);
+    };
 
     return (
         <div id="sidebar-bg">
@@ -43,7 +60,14 @@ const Dashboard: React.FC = (props: any) => {
             <GenreListIcons genreList={props.genres}/>
             <div className="clearfix"></div>
                 <div className="dashboard-container">
-                <ListMovies movieList={props.movies}/>
+                {listMovies}
+                    <ul className="page-numbers">
+                        <li>
+                            <Link className="previous page-numbers" to="#!" onClick={loadMore}>
+                                <i className="fas fa-chevron-down"></i>
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
             </main>
         </div>
@@ -59,8 +83,8 @@ const mapStateToProps = (state:any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        fetchMovies: () => {
-            return dispatch(movies.fetchMovies());
+        fetchMovies: (next = "") => {
+            return dispatch(movies.fetchMovies(next));
         },
         getGenres: () => {
             return dispatch(movies.getGenres());

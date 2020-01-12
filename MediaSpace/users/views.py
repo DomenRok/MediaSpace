@@ -20,11 +20,13 @@ from rest_framework.response import Response
 
 
 class UserList(generics.ListAPIView):
+    """ List all users. """
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
 
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    """ List details for a given user_id. """
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
 
@@ -32,6 +34,7 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 @api_view(["POST"])
 @permission_classes((AllowAny,))
 def login(request):
+    """ Login using username&password, upon success returns a token, username and a user_id. """
     username = request.data.get("username")
     password = request.data.get("password")
     if username is None or password is None:
@@ -49,6 +52,7 @@ def login(request):
 @api_view(["POST"])
 @permission_classes((AllowAny,))
 def logout(request):
+    """ Deletes token for user upon logout, requires username and password. (for some reason). """
     username = request.data.get("username")
     password = request.data.get("password")
     if username is None or password is None:

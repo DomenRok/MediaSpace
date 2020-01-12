@@ -28,7 +28,7 @@ const MovieProfilePlayer: React.FC<MovieDetail> = (props: MovieDetail) => {
 
  	return (
             <>
-            <div id="movie-detail-header-pro" className="placeholderImage">
+            <div id="movie-detail-header-pro" style={{backgroundImage: "url(" + props.movieinfo.thumbnail_url + ")"}}>
 				
 				<div className="progression-studios-slider-more-options">
 					<i className="fas fa-ellipsis-h"></i>

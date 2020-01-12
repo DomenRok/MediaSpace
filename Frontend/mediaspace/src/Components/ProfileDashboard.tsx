@@ -62,7 +62,7 @@ const ProfileDashboard: React.FC = (props: any) => {
 							        }"
 							        data-empty-fill="#ffe1e1"
 							        data-reverse="true"
-							      ><span style="color:#ff4141;">6.0</span></div>
+							      ><span className="cff4141">6.0</span></div>
 								</div>
 							</div>
 						</div>
@@ -85,7 +85,7 @@ const ProfileDashboard: React.FC = (props: any) => {
 							        }"
 							        data-empty-fill="#def6de"
 							        data-reverse="true"
-							      ><span style="color:#42b740;">8.6</span></div>
+							      ><span className="c42b740">8.6</span></div>
 								</div>
 							</div>
 						</div>
@@ -107,7 +107,7 @@ const ProfileDashboard: React.FC = (props: any) => {
 							        }"
 							        data-empty-fill="#def6de"
 							        data-reverse="true"
-							      ><span style="color:#42b740;">7.2</span></div>
+							      ><span className="c42b740">7.2</span></div>
 								</div>
 							</div>
 						</div>
@@ -130,7 +130,7 @@ const ProfileDashboard: React.FC = (props: any) => {
 							        }"
 							        data-empty-fill="#def6de"
 							        data-reverse="true"
-							      ><span style="color:#42b740;">8.6</span></div>
+							      ><span className="c42b740">8.6</span></div>
 								</div>
 							</div>
 						</div>
@@ -152,7 +152,7 @@ const ProfileDashboard: React.FC = (props: any) => {
 							        }"
 							        data-empty-fill="#ffe1e1"
 							        data-reverse="true"
-							      ><span style="color:#ff4141;">6.0</span></div>
+							      ><span className="cff4141">6.0</span></div>
 								</div>
 							</div>
 						</div>
@@ -175,7 +175,7 @@ const ProfileDashboard: React.FC = (props: any) => {
 							        }"
 							        data-empty-fill="#def6de"
 							        data-reverse="true"
-							      ><span style="color:#42b740;">8.6</span></div>
+							      ><span className="c42b740">8.6</span></div>
 								</div>
 							</div>
 						</div>
@@ -197,7 +197,7 @@ const ProfileDashboard: React.FC = (props: any) => {
 							        }"
 							        data-empty-fill="#def6de"
 							        data-reverse="true"
-							      ><span style="color:#42b740;">7.2</span></div>
+							      ><span className="c42b740">7.2</span></div>
 								</div>
 							</div>
 						</div>
@@ -219,7 +219,7 @@ const ProfileDashboard: React.FC = (props: any) => {
 							        }"
 							        data-empty-fill="#def6de"
 							        data-reverse="true"
-							      ><span style="color:#42b740;">8.6</span></div>
+							      ><span className="c42b740">8.6</span></div>
 								</div>
 							</div>
 						</div>

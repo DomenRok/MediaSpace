@@ -3,6 +3,7 @@ import Header from "../Components/Header";
 import {Footer} from "../Components/Footer";
 import {Redirect} from "react-router";
 import ProfileSidebar from "../Components/ProfileSidebar";
+import ProfileDashboard from "../Components/ProfileDashboard";
 interface Props {
     loggedIn: boolean
 }
@@ -22,7 +23,8 @@ export const Profile: React.FC<Props> = (props) => {
             <div id="sidebar-bg">
                 <Header {...props}/>
                 <ProfileSidebar />
-                <main id="col-main">
+                <main id="col-main-with-sidebar">
+                    <ProfileDashboard />
                     <Footer {...props}/>
                 </main>
 

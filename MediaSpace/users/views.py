@@ -42,7 +42,7 @@ def login(request):
         return Response({'error': 'Invalid Credentials'},
                         status=HTTP_404_NOT_FOUND)
     token, _ = Token.objects.get_or_create(user=user)
-    return Response({'token': token.key, 'username': user.username},
+    return Response({'token': token.key, 'username': user.username, 'user_id': user.id},
                     status=HTTP_200_OK)
 
 @csrf_exempt

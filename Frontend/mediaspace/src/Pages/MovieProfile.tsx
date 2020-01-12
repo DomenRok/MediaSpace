@@ -9,9 +9,9 @@ interface Props {
     loggedIn: boolean
 }
 
-export const Dashboard: React.FC<Props> = (props) => {
+export const MovieProfile: React.FC<Props> = (props) => {
     if (!props.loggedIn) {
-        return <Redirect to="/"/>
+        //return <Redirect to="/"/>
     }
     const slider = {
         title: "Film",

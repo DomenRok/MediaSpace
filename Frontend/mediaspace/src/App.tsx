@@ -11,6 +11,7 @@ import {auth} from "./actions";
 import mediaspace from "./reducers";
 import {applyMiddleware, createStore} from "redux";
 import {connect, Provider} from "react-redux";
+import {MovieProfile} from "./Pages/MovieProfile";
 
 let store = createStore(mediaspace, applyMiddleware(thunk));
 interface AuthProps {
@@ -45,7 +46,8 @@ const RootContainerComponent: React.FC<AnyProps> = (props) => {
         return (
             <HashRouter>
                 <Switch>
-                    <PrivateRoute path="/browse/:id?" logged={true} component={Dashboard} red="/" />
+                    <PrivateRoute path="/browse/:id" logged={true} component={MovieProfile} red="/" />
+                    <PrivateRoute exact path="/browse/" logged={true} component={Dashboard} red="/" />
                     <PrivateRoute exact path="/" logged={false} component={Home} red="/browse" />
                     {/*<Route component={NotFound} />*/}
                 </Switch>

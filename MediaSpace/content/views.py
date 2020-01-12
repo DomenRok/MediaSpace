@@ -132,13 +132,14 @@ def recommend_random(request):
     return paginator.get_paginated_response(ser.data)
 
 @api_view()
-def recommend_for_user(request, user_id):
+def recommend_for_user(request, username):
     """ Returns 20 movies for the specified user_id. """
     paginator = PageNumberPagination()
     paginator.page_size = 20
 
     try:
-        movie_ids = models.Recommendation.objects.filter(person_id=user_id).values_list('movie_id', flat=True)
+        user = models.CustomUser.objects.get(username=username)
+        movie_ids = models.Recommendation.objects.filter(person_id=user.id).values_list('movie_id', flat=True)
         movies = models.Movie.objects.filter(id__in=movie_ids)[0:20]
     except Exception as e:
         return Response({"Details": "Error with recommendations: {}".format(e)})

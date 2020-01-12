@@ -12,7 +12,9 @@ import ListMovies from "../Components/ListMovies";
 import {Link} from "react-router-dom";
 
 const Dashboard: React.FC = (props: any) => {
+    const [recommended, setRecommended] = useState({results: []});
     const [movieLists, setMovieLists] = useState([]);
+
     useEffect(() => {
         props.getGenres();
         props.fetchMovies();
@@ -20,35 +22,49 @@ const Dashboard: React.FC = (props: any) => {
 
     useEffect(() => {
         if (props.movies !== movieLists) setMovieLists(movieLists.concat(props.movies));
-    }, [props.movies]);
+        if (props.user) {
+            let headers = {"Content-Type": "application/json"} as any;
+            let {token} = props;
+            if (token) {
+                headers["Authorization"] = `Token ${token}`;
+            }
+            fetch("http://localhost:8000/api/v1/content/recommend/"+props.user, {headers, })
+                .then(res => {
+                    if (res.status < 500) {
+                        return res.json().then(data => {
+                            return {status: res.status, data};
+                        })
+                    } else {
+                        console.log("Server Error!");
+                        throw res;
+                    }
+                })
+                .then(res => {
+                    if (res.status === 200) {
+                        setRecommended(res.data);
+                    } else if (res.status === 401 || res.status === 403) {
+                        throw new Error("Error: "+res.data);
+                    }
+                });
+        }
+    }, [props.movies, props.user]);
+    if (!props.movies || recommended.results.length === 0) return null;
 
-    if (!props.movies) return null;
-
-    const slider = {
-        title: "Film",
-        bgImage: "https://cdn.hipwallpaper.com/i/96/4/ecEQiJ.jpeg",
-        black: false,
-        description: "description movie",
-        genre: "action",
-        href: "efss",
-        id: 15,
-        video: "http://afterglowplayer.com/sandbox/v1/afterglow_local_hd.mp4"
-    };
-    const slider2 = {
-        title: "Creed",
-        bgImage: "https://wallpapersite.com/images/pages/pic_w/14567.jpg",
-        black: true,
-        description: "The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.",
-        genre: "drama",
-        href: "neki",
-        id: 16,
-        video: "https://www.youtube.com/watch?v=3LPANjHlPxo"
-    }
-    const sliders = [slider,slider2];
-
-    const listMovies = movieLists.map((movies: any) => {
-        return <ListMovies movieList={movies}/>
+    const recommendedSlider = recommended.results.slice(0,3).map((movie: any) => {
+        return {
+            title: movie.title,
+            bgImage: movie.thumbnail_url,
+            black: true,
+            description: movie.description,
+            genre: movie.genre,
+            id: movie.id,
+            video: movie.link
+        }
     });
+
+    let listMovies = movieLists.map((movies: any) => <ListMovies movieList={movies} title={"Other"}/>);
+    const recommendedList = [<ListMovies movieList={recommended} title={"Recommended for you"}/>];
+    listMovies = [...recommendedList, ...listMovies];
 
     const loadMore = (e: any) => {
         e.preventDefault();
@@ -59,7 +75,7 @@ const Dashboard: React.FC = (props: any) => {
         <div id="sidebar-bg">
             <Header {...props}/>
             <main id="col-main">
-            <DashBoardSlider slides={sliders}/>
+            <DashBoardSlider slides={recommendedSlider}/>
             <GenreListIcons genreList={props.genres}/>
             <div className="clearfix"></div>
                 <div className="dashboard-container">
@@ -79,6 +95,8 @@ const Dashboard: React.FC = (props: any) => {
 
 const mapStateToProps = (state:any) => {
     return {
+        token: state.auth.token,
+        user: state.auth.user,
         genres: state.movies.genres,
         movies: state.movies.movies
     };

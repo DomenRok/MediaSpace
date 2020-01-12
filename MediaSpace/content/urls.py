@@ -20,7 +20,7 @@ urlpatterns = [
     path('genre/<int:pk>', csrf_exempt(views.GenreDetail.as_view())),
     path('genre/create', csrf_exempt(views.GenreCreate.as_view())),
     path('recommend', csrf_exempt(views.recommend_random)),
-    path('recommend/<int:user_id>', csrf_exempt(views.recommend_for_user))
+    path('recommend/<str:username>', csrf_exempt(views.recommend_for_user))
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

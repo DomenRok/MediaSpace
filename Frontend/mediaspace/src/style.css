@@ -457,7 +457,7 @@ nav#site-navigation-pro {
 	font-weight:normal;
 	font-style:normal;
 	border:none;
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 5 Pro";
 	font-weight: 900;
 	content:"\f107";
 	font-size:11px;
@@ -466,7 +466,7 @@ nav#site-navigation-pro {
 	margin-top:-7px;
 }
 .sf-arrows ul .sf-with-ul:after {
-	font:normal normal normal 10px/1 "Font Awesome 5 Free";
+	font:normal normal normal 10px/1 "Font Awesome 5 Pro";
 	content:"\f105"; 
 	margin-top:-5px;
 	right:14px;
@@ -2151,7 +2151,7 @@ a.movie-detail-header-play-btn i {
 
 .rating-pro > label:before {
     position: relative;
-	font-family: 'Font Awesome 5 Free';
+	font-family: 'Font Awesome 5 Pro';
 	font-weight:400;
 	font-size:15px;
     display: block;
@@ -3099,7 +3099,7 @@ ul.welcome-features li {
 }
 
 ul.welcome-features li:before {
-	font-family: 'Font Awesome 5 Free';
+	font-family: 'Font Awesome 5 Pro';
 	content: "\f00c";
 	font-weight: 900;
 	display:inline-block;
@@ -3237,7 +3237,7 @@ ul.checkmark-list-pro li {
 }
 
 ul.checkmark-list-pro li:before {
-	font-family: 'Font Awesome 5 Free';
+	font-family: 'Font Awesome 5 Pro';
 	content: "\f00c";
 	font-weight: 900;
 	display:inline-block;
@@ -3427,7 +3427,7 @@ html[xmlns] .flexslider .slides { display: block; }
     -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	transform: translate(0, 0); 
-    font-family: 'Font Awesome 5 Free'; 
+    font-family: 'Font Awesome 5 Pro';
 	font-weight: 900;
     text-align:center;	
     border:none;
@@ -3736,7 +3736,7 @@ ul#mobile-menu-pro.collapsed li .sub-collapser:before {
 	position:absolute;
 	top:0px;
 	left:0px;
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 5 Pro";
 	font-weight: 900;
 	font-size:13px;
 	border:none;

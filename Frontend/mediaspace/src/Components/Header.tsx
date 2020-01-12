@@ -105,7 +105,7 @@ const Header: React.FC = (props: any) => {
                     width: "100%",
                     background: "#ffffff",
                     borderBottom: "1px solid rgba(0,0,0,0.08)"}}>
-                <div id="video-logo-background"><a href="dashboard-home.html"><img src="images/logo-video-layout.png"
+                <div id="video-logo-background"><a href="/"><img src="images/logo-video-layout.png"
                                                                                    alt="Logo"/></a></div>
                 <div id="video-search-header">
                     <div id="search-icon-more" onClick={e => clickHeadInfo("#video-search-header")}></div>

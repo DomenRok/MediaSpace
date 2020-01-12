@@ -158,7 +158,7 @@ def similiar_to(request, movie_id):
     paginator.page_size = 3
 
     try:
-        movie_ids = models.Similarity.objects.filter(movie_from_id=1).values_list('movie_to_id', flat=True)
+        movie_ids = models.Similarity.objects.filter(movie_from_id=movie_id).values_list('movie_to_id', flat=True)
         movies = models.Movie.objects.filter(id__in=movie_ids)
     except Exception as e:
         return Response({"Details": "Error with recommendations: {}".format(e)})
@@ -167,4 +167,3 @@ def similiar_to(request, movie_id):
     ser = serializers.MovieSerializer(result_page, many=True)
 
     return paginator.get_paginated_response(ser.data)
-    

@@ -3,7 +3,11 @@ import Header from "../Components/Header";
 import {DashBoardSlider, Slider} from "../Components/DashBoardSlider";
 import {HomeRow} from "../Components/HomeRow";
 import {Footer} from "../Components/Footer";
-import Modal from "../Components/Modal";
+import MovieProfileComponent from "../Components/MovieProfileComponent";
+import MovieProfileSidebar from "../Components/MovieProfileSidebar";
+import MovieProfilePlayer from "../Components/MovieProfilePlayer";
+import MovieProfileRating from "../Components/MovieProfileRating";
+import MovieProfileDashboard from "../Components/MovieProfileDashboard";
 import {Redirect} from "react-router";
 interface Props {
     loggedIn: boolean
@@ -28,11 +32,14 @@ export const MovieProfile: React.FC<Props> = (props) => {
     return (
         <div id="sidebar-bg">
             <Header {...props}/>
-            <main id="col-main">
-            <DashBoardSlider slides={sliders}/>
+            <MovieProfileSidebar />
+            <main id="col-main-with-sidebar">
+            <MovieProfilePlayer />
+            <MovieProfileRating />
+            <MovieProfileDashboard />
+            <Footer {...props}/>
             </main>
 
-            <Footer {...props}/>
         </div>
     );
 }

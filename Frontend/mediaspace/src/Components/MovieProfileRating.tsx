@@ -7,7 +7,7 @@ import $ from "jquery";
 import "jquery-asRange";
 
 
-const MovieProfileComponent: React.FC = (props: any) => {
+const MovieProfileRating: React.FC = (props: any) => {
 
     if (props.isAuthenticated) {
         return (
@@ -70,7 +70,7 @@ const MovieProfileComponent: React.FC = (props: any) => {
 						</div>
 					</div>{/*<!-- close .row -->*/}
 				</div>{/*<!-- close .dashboard-container -->*/}
-			</div>{/*<!-- close #movie-detail-rating -->*/}
+			</div>{/*<!-- close #movie-detail-rating --></label>*/}
             </>
         );
     }else{
@@ -88,4 +88,4 @@ const mapStateToProps = (state:any) => {
         isAuthenticated: state.auth.isAuthenticated
     };
 }
-export default connect(mapStateToProps,null)(MovieProfileComponent);
+export default connect(mapStateToProps,null)(MovieProfileRating);

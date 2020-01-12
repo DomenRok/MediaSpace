@@ -5,12 +5,27 @@ import {connect} from "react-redux";
 import {logout} from "../actions/auth";
 import $ from "jquery";
 import "jquery-asRange";
+import Afterglow from "./Player/Afterglow";
 
 interface MovieDetail{
 	movieinfo: any
 }
 
 const MovieProfilePlayer: React.FC<MovieDetail> = (props: MovieDetail) => {
+    useEffect(() => {
+        (window as any).afterglow = new Afterglow();
+        (window as any).afterglow.init();
+    }, []);
+
+    const getId = (url: string): string => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+
+        return (match && match[2].length === 11)
+            ? match[2]
+            : "";
+    };
+
  	return (
             <>
             <div id="movie-detail-header-pro" className="placeholderImage">
@@ -28,10 +43,8 @@ const MovieProfilePlayer: React.FC<MovieDetail> = (props: MovieDetail) => {
 				
 				<a className="movie-detail-header-play-btn afterglow" href="#VideoLightbox-1"><i className="fas fa-play"></i></a>
 				
-	         <video id="VideoLightbox-1"  poster={props.movieinfo.thumbnail_url} width="960" height="540">
-	             <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.mp4" type="video/mp4" />
-	             <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.webm" type="video/webm" />
-	         </video>
+            <video id={"VideoLightbox-1"} poster={props.movieinfo.thumbnail_url} width="960" height="540"
+                           data-youtube-id={getId(props.movieinfo.link)}></video>
 				
 				<div id="movie-detail-header-media">
 					<div className="dashboard-container">

@@ -118,7 +118,7 @@ def get_movies_per_genre(request, pk):
 @api_view()
 def recommend_random(request):
     import random
-    """ Returns all movies for a given genre_id. """
+    """ Returns 10 movies randomly. """
     paginator = PageNumberPagination()
     paginator.page_size = 20
 

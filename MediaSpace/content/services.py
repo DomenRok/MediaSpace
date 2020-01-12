@@ -9,14 +9,12 @@ class DataUtils:
 
     @staticmethod
     def return_dataframe(n=1000):
-        df = pd.DataFrame(columns=["user_id", "movie_id", "rating"])
         movies = []
-        done = []
-        i = 0
         for row in Rating.objects.raw('SELECT * from content_rating group by movie_id having count(*) > {}'.format(n)):
             movies.append(row.movie_id)
 
         df = pd.DataFrame(list(Rating.objects.filter(movie__in=movies).values("person_id", "movie_id", "rating")))
+        df.columns = ["movieID", "userID", "rating"]
 
         #for row in Rating.objects.filter(movie__in=movies):
         #    if(row.movie_id not in done):

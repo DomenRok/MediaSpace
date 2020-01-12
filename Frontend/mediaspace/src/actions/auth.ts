@@ -19,7 +19,7 @@ export const login = (formDetails: IUser) => {
     return (dispatch: any, getState: any) => {
         let headers = {"Content-Type": "application/json"};
         let body = JSON.stringify(formDetails);
-        (document.getElementsByClassName("modal-backdrop")[0].parentNode as any).removeChild(document.getElementsByClassName("modal-backdrop")[0]);
+        $('#LoginModal').modal('hide');
         return fetch(APIURL+"/login", {headers, body, method: "POST"})
             .then(res => {
                 if (res.status < 500) {

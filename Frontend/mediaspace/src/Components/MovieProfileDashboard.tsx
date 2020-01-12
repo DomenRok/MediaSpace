@@ -22,42 +22,7 @@ const MovieProfileDashboard: React.FC<MovieDetail> = (props: MovieDetail) => {
 					<p>{props.movieinfo.description}</p>
                 </div>
 
-				<div className="movie-details-section">
-					<h2>The Cast</h2>
-					<div className="row">
-						<div className="col-12 col-md-6 col-lg-6 col-xl-4">
-							<div className="item-listing-container-skrn">
-								<a href="#!"><img src="http://via.placeholder.com/507x672" alt="Cast" /></a>
-								<div className="item-listing-text-skrn item-listing-movie-casting">
-									<h6><a href="#!">Robert Downey Jr.</a></h6>
-									<div className="movie-casting-sub-title">Tony Stark</div>
-								</div>
-							</div>
-						</div>
-						
-						<div className="col-12 col-md-6 col-lg-6 col-xl-4">
-							<div className="item-listing-container-skrn">
-								<a href="#!"><img src="http://via.placeholder.com/507x672" alt="Cast" /></a>
-								<div className="item-listing-text-skrn item-listing-movie-casting">
-									<h6><a href="#!">Scarlett Johansson</a></h6>
-									<div className="movie-casting-sub-title">Black Widow</div>
-								</div>
-							</div>
-						</div>
-						
-						<div className="col-12 col-md-6 col-lg-6 col-xl-4">
-							<div className="item-listing-container-skrn">
-								<a href="#!"><img src="http://via.placeholder.com/507x672" alt="Cast" /></a>
-								<div className="item-listing-text-skrn item-listing-movie-casting">
-									<h6><a href="#!">Chris Hemsworth
-Thor</a></h6>
-									<div className="movie-casting-sub-title">Tony Stark</div>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-				</div>
+				
 
 					
 				<div className="movie-details-section">

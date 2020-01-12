@@ -1,5 +1,6 @@
 import React from "react";
 import MovieItem from "./MovieItem";
+import {Link} from "react-router-dom";
 
 interface MovieList {
     movieList: any
@@ -15,11 +16,9 @@ const ListMovies: React.FC<MovieList> = (props: MovieList) => {
 
     return (
         <>
-            <div className="dashboard-container">
-                <h4 className="heading-extra-margin-bottom">Comedies</h4>
-                <div className="row">
+            <h4 className="heading-extra-margin-bottom">Comedies</h4>
+            <div className="row">
                 {movieList}
-                </div>
             </div>
         </>
     );

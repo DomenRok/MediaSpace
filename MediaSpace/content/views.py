@@ -4,8 +4,8 @@ from . import models
 from . import serializers
 
 from rest_framework.decorators import api_view
-from rest_framework.response import Response
 
+from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
 
 
@@ -31,6 +31,9 @@ class MovieList(generics.ListAPIView):
     """ Lists all movies. """
     queryset = models.Movie.objects.all()
     serializer_class = serializers.MovieSerializer
+
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title']
 
 
 class MovieDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -90,7 +93,7 @@ def get_ratings_per_movie(request, pk):
 def get_comments_per_movie(request, pk):
     """ Returns all comments for a given movie_id. """
     paginator = PageNumberPagination()
-    paginator.page_size = 20
+    paginator.page_size = 50
 
     ratings = models.Rating.objects.filter(movie__exact=pk).exclude(comment__exact="")
     result_page = paginator.paginate_queryset(ratings, request)

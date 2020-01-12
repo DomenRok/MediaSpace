@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {Link} from 'react-router-dom';
-import {SideBarNav} from "./SidebarNav";
-import {connect} from "react-redux";
-import {logout} from "../actions/auth";
 import $ from "jquery";
 import "jquery-asRange";
 import MovieItem from "./MovieItem";
+import {connect} from "react-redux";
 
 interface MovieDetail{
 	movieinfo: any
@@ -15,8 +13,8 @@ const MovieProfileDashboard: React.FC<MovieDetail> = (props: MovieDetail) => {
 	const [similar, setSimilar] = useState([]);
 
 	useEffect(() => {
-		similarFun()
-	}, []);
+		similarFun();
+	}, [props.movieinfo.id]);
 
 	const similarFun = () => {
 		let headers = {"Content-Type": "application/json"} as any;
@@ -75,8 +73,8 @@ const MovieProfileDashboard: React.FC<MovieDetail> = (props: MovieDetail) => {
 };
 
 const mapStateToProps = (state:any) => {
-    return {
-        isAuthenticated: state.auth.isAuthenticated
-    };
+	return {
+		isAuthenticated: state.auth.isAuthenticated
+	};
 }
 export default connect(mapStateToProps,null)(MovieProfileDashboard);

@@ -49,7 +49,7 @@ const MovieProfile: React.FC = (props: any) => {
                     }
                 });
         }
-    }, [props.token]);
+    }, [props.token, params.id]);
     if (typeof movieInfo === 'undefined') return null;
     return (
         <div id="sidebar-bg">

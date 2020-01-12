@@ -112,7 +112,7 @@ export const DashBoardSlider = (props: Props) => {
                                         <li>PG-13</li>
                                         <li>HD</li>
                                     </ul>
-                                    <h2 className={(slide.black || '') && "light-fonts-pro"}><Link to="dashboard-movie-profile.html">{slide.title}</Link></h2>
+                                    <h2 className={(slide.black || '') && "light-fonts-pro"}><Link to="/browse/1">{slide.title}</Link></h2>
                                     <ul className="progression-studios-slider-meta">
                                         <li>{slide.genre}</li>
                                     </ul>

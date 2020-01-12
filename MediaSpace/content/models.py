@@ -21,6 +21,8 @@ class Movie(models.Model):
     recommendations = models.ManyToManyField(CustomUser, through='Recommendation', related_name='recommendations')
     imdb_id = models.IntegerField(blank=True, null=True)
     thumbnail_url = models.URLField(blank=True, null=True)
+    similarity = models.ManyToManyField('self', through='Similarity', symmetrical=False)
+
 
     def __str__(self):
         return f"{self.title}"
@@ -45,3 +47,7 @@ class Recommendation(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 
 
+class Similarity(models.Model):
+    movie_from = models.ForeignKey(Movie, related_name='movie_from', on_delete=models.CASCADE)
+    movie_to = models.ForeignKey(Movie, related_name='movie_to', on_delete=models.CASCADE)
+    similarity = models.DecimalField(max_digits=50, decimal_places=30)

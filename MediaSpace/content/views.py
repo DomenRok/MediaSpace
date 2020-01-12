@@ -159,7 +159,7 @@ def similiar_to(request, movie_id):
 
     try:
         movie_ids = models.Similarity.objects.filter(movie_from_id=movie_id).values_list('movie_to_id', flat=True)
-        movies = models.Movie.objects.filter(id__in=movie_ids)
+        movies = models.Movie.objects.filter(id__in=movie_ids).order_by('?')
     except Exception as e:
         return Response({"Details": "Error with recommendations: {}".format(e)})
 

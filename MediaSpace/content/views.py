@@ -140,7 +140,7 @@ def recommend_for_user(request, username):
     try:
         user = models.CustomUser.objects.get(username=username)
         movie_ids = models.Recommendation.objects.filter(person_id=user.id).values_list('movie_id', flat=True)
-        movies = models.Movie.objects.filter(id__in=movie_ids)[0:20]
+        movies = models.Movie.objects.filter(id__in=movie_ids).order_by('?')[0:20]
     except Exception as e:
         return Response({"Details": "Error with recommendations: {}".format(e)})
 

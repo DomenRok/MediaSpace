@@ -3,7 +3,7 @@ import Header from "../Components/Header";
 import {DashBoardSlider, Slider} from "../Components/DashBoardSlider";
 import {HomeRow} from "../Components/HomeRow";
 import {Footer} from "../Components/Footer";
-import {Modal} from "../Components/Modal";
+import Modal from "../Components/Modal";
 import {Redirect} from "react-router";
 interface Props {
     loggedIn: boolean
@@ -27,12 +27,12 @@ export const Dashboard: React.FC<Props> = (props) => {
 
     return (
         <div id="sidebar-bg">
-            <Header loggedIn={props.loggedIn}/>
+            <Header {...props}/>
             <main id="col-main">
             <DashBoardSlider slides={sliders}/>
             </main>
 
-            <Footer loggedIn={props.loggedIn}/>
+            <Footer {...props}/>
         </div>
     );
 }

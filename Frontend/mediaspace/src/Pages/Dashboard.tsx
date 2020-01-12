@@ -1,12 +1,18 @@
 import React from "react";
 import Header from "../Components/Header";
 import {DashBoardSlider, Slider} from "../Components/DashBoardSlider";
+import {HomeRow} from "../Components/HomeRow";
+import {Footer} from "../Components/Footer";
+import Modal from "../Components/Modal";
 import {Redirect} from "react-router";
 interface Props {
     loggedIn: boolean
 }
 
 export const Dashboard: React.FC<Props> = (props) => {
+    if (!props.loggedIn) {
+        return <Redirect to="/"/>
+    }
     const slider = {
         title: "Film",
         bgImage: "https://cdn.hipwallpaper.com/i/96/4/ecEQiJ.jpeg",
@@ -17,26 +23,14 @@ export const Dashboard: React.FC<Props> = (props) => {
         id: 15,
         video: "http://afterglowplayer.com/sandbox/v1/afterglow_local_hd.mp4"
     };
-    const slider2 = {
-        title: "Creed",
-        bgImage: "https://wallpapersite.com/images/pages/pic_w/14567.jpg",
-        black: true,
-        description: "The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.",
-        genre: "drama",
-        href: "neki",
-        id: 16,
-        video: "http://afterglowplayer.com/sandbox/v1/afterglow_local_hd.mp4"
-    }
-    var sliders = [slider,slider2];
+    var sliders = [slider];
 
     return (
         <div id="sidebar-bg">
-            <Header/>
+            <Header {...props}/>
             <main id="col-main">
             <DashBoardSlider slides={sliders}/>
             </main>
-
-            <Footer loggedIn={props.loggedIn}/>
         </div>
     );
 }

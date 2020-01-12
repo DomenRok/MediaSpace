@@ -31,10 +31,10 @@ const Home = (props: any) => {
 
     return (
         <>
-        <Header/>
+        <Header {...props}/>
             <FlexSlider slides={slides}/>
             <HomeRow/>
-            <Footer/>
+            <Footer {...props}/>
             <Modal/>
             </>
     );

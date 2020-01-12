@@ -6,6 +6,8 @@ from . import serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from rest_framework.pagination import PageNumberPagination
+
 
 class GenreList(generics.ListAPIView):
     """ Lists all genres. """
@@ -73,18 +75,42 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
 @api_view()
 def get_ratings_per_movie(request, pk):
     """ Returns all ratings for a given movie_id"""
-    ratings = models.Rating.objects.filter(movie__exact=pk)
-    Ser = serializers.RatingSerializer(ratings, many=True)
+    paginator = PageNumberPagination()
+    paginator.page_size = 20
 
-    return Response(Ser.data)
+    ratings = models.Rating.objects.filter(movie__exact=pk)
+    result_page = paginator.paginate_queryset(ratings, request)
+
+    ser = serializers.RatingSerializer(result_page, many=True)
+
+    return paginator.get_paginated_response(ser.data)
 
 
 @api_view()
 def get_comments_per_movie(request, pk):
     """ Returns all comments for a given movie_id. """
-    ratings = models.Rating.objects.filter(movie__exact=pk).exclude(comment__exact="")
-    Ser = serializers.CommentSerializer(ratings, many=True)
+    paginator = PageNumberPagination()
+    paginator.page_size = 20
 
-    return Response(Ser.data)
+    ratings = models.Rating.objects.filter(movie__exact=pk).exclude(comment__exact="")
+    result_page = paginator.paginate_queryset(ratings, request)
+    ser = serializers.CommentSerializer(result_page, many=True)
+
+    return paginator.get_paginated_response(ser.data)
+
+
+@api_view()
+def get_movies_per_genre(request, pk):
+    """ Returns all comments for a given movie_id. """
+    paginator = PageNumberPagination()
+    paginator.page_size = 20
+
+    movies = models.Movie.objects.filter(genre__exact=pk)
+    result_page = paginator.paginate_queryset(movies, request)
+    ser = serializers.MovieSerializer(result_page, many=True)
+
+    return paginator.get_paginated_response(ser.data)
+
+
 
 

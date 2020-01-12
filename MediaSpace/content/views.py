@@ -115,5 +115,19 @@ def get_movies_per_genre(request, pk):
     return paginator.get_paginated_response(ser.data)
 
 
+@api_view()
+def recommend_random(request):
+    import random
+    """ Returns 10 movies randomly. """
+    paginator = PageNumberPagination()
+    paginator.page_size = 20
 
+    count = models.Movie.objects.count()
+    rnd = random.randint(0, count-1)
+    movies = models.Movie.objects.all()[rnd:rnd+10]
+
+    result_page = paginator.paginate_queryset(movies, request)
+    ser = serializers.MovieSerializer(result_page, many=True)
+
+    return paginator.get_paginated_response(ser.data)
 

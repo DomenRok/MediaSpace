@@ -1,4 +1,4 @@
-from recomendations import Recommend, SlopOne_Predictor, Cosine_Predictor
+from Recomendations import Recommend, SlopOne_Predictor, Cosine_Predictor
 from content.services import DataUtils
 import random
 import MySQLdb as mysql

@@ -10,7 +10,7 @@ interface MovieDetail{
 	movieinfo: any
 }
 
-const MovieProfilePlayer: React.FC = (props: any) => {
+const MovieProfilePlayer: React.FC<MovieDetail> = (props: MovieDetail) => {
  	return (
             <>
             <div id="movie-detail-header-pro" className="placeholderImage">

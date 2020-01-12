@@ -45,7 +45,7 @@ const MovieProfilePlayer: React.FC<MovieDetail> = (props: MovieDetail) => {
 				
             <video id={"VideoLightbox-1"} poster={props.movieinfo.thumbnail_url} width="960" height="540"
                            data-youtube-id={getId(props.movieinfo.link)}></video>
-				
+				{/*
 				<div id="movie-detail-header-media">
 					<div className="dashboard-container">
 						<h5>Media</h5>						
@@ -77,9 +77,10 @@ const MovieProfilePlayer: React.FC<MovieDetail> = (props: MovieDetail) => {
 									</div>
 								</a>
 							</div>
-						</div>{/*<!-- close .row -->*/}
-					</div>{/*<!-- close .dashboard-container -->*/}
-				</div>{/*<!-- close #movie-detail-header-media -->*/}
+						</div>{<!-- close .row -->}
+					</div>{<!-- close .dashboard-container -->}
+				</div>{<!-- close #movie-detail-header-media -->}
+				*/}
 				
 				<div id="movie-detail-gradient-pro"></div>
 			</div>{/*<!-- close #movie-detail-header-pro -->*/}

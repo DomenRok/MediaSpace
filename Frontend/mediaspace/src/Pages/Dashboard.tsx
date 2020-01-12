@@ -1,6 +1,9 @@
 import React, {ReactEventHandler, ReactHTML, useEffect, useState} from "react";
 import Header from "../Components/Header";
 import {DashBoardSlider, Slider} from "../Components/DashBoardSlider";
+import {HomeRow} from "../Components/HomeRow";
+import {Footer} from "../Components/Footer";
+import Modal from "../Components/Modal";
 import {Redirect} from "react-router";
 import GenreListIcons from "../Components/GenreListIcons";
 import {movies} from "../actions";
@@ -70,7 +73,7 @@ const Dashboard: React.FC = (props: any) => {
 
     return (
         <div id="sidebar-bg">
-            <Header/>
+            <Header {...props}/>
             <main id="col-main">
             <DashBoardSlider slides={recommendedSlider}/>
             <GenreListIcons genreList={props.genres}/>

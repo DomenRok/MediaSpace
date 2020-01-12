@@ -30,6 +30,13 @@
 /*
 =============================================== 01. FONT STYLES ===============================================
 */
+.cff4141{
+	color: #ff4141;
+}
+.c42b740{
+	color: #42b740;
+}
+
 body, input, textarea, select { 
 	font-family: 'Lato', sans-serif;
 	line-height: 1.8; 
@@ -312,6 +319,14 @@ header#masthead-pro h1 {
 
 .btn-header-pro.btn-green-pro {
 	margin-left:12px;
+}
+
+.placeholderImage {
+	background-image:url('http://via.placeholder.com/1442x775');
+}
+
+.movie-profile-main {
+	float: left;
 }
 
 /*

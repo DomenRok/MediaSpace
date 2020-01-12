@@ -6,10 +6,12 @@ import {logout} from "../actions/auth";
 import $ from "jquery";
 import "jquery-asRange";
 
+interface MovieDetail{
+	movieinfo: any
+}
 
-const MovieProfilePlayer: React.FC = (props: any) => {
+const MovieProfilePlayer: React.FC<MovieDetail> = (props: MovieDetail) => {
 
-    if (props.isAuthenticated) {
         return (
             <>
             <div id="movie-detail-header-pro" className="placeholderImage">
@@ -71,13 +73,6 @@ const MovieProfilePlayer: React.FC = (props: any) => {
 			</div>{/*<!-- close #movie-detail-header-pro -->*/}
             </>
         );
-    }else{
-        return (
-            <>
-            <p>not logged in</p>
-            </>
-        );
-    }
 
 };
 

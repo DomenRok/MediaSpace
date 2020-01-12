@@ -6,17 +6,19 @@ import {logout} from "../actions/auth";
 import $ from "jquery";
 import "jquery-asRange";
 
+interface MovieDetail{
+	movieinfo: any
+}
 
-const MovieProfileRating: React.FC = (props: any) => {
+const MovieProfileRating: React.FC<MovieDetail> = (props: MovieDetail) => {
 
-    if (props.isAuthenticated) {
         return (
             <>
             <div id="movie-detail-rating">
 				<div className="dashboard-container">
 					<div className="row">
 						<div className="col-sm">
-							<h5>Rate True Blood</h5>
+							<h5>Rate {props.movieinfo.title}</h5>
 							
 							<div className="rating-pro">
    							  <label>
@@ -73,13 +75,6 @@ const MovieProfileRating: React.FC = (props: any) => {
 			</div>{/*<!-- close #movie-detail-rating --></label>*/}
             </>
         );
-    }else{
-        return (
-            <>
-            <p>not logged in</p>
-            </>
-        );
-    }
 
 };
 

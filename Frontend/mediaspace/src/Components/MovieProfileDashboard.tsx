@@ -6,10 +6,12 @@ import {logout} from "../actions/auth";
 import $ from "jquery";
 import "jquery-asRange";
 
+interface MovieDetail{
+	movieinfo: any
+}
 
-const MovieProfileDashboard: React.FC = (props: any) => {
+const MovieProfileDashboard: React.FC<MovieDetail> = (props: MovieDetail) => {
 
-    if (props.isAuthenticated) {
         return (
             <>
             <div className="dashboard-container">
@@ -17,8 +19,8 @@ const MovieProfileDashboard: React.FC = (props: any) => {
 				
 				<div className="movie-details-section">
 					<h2>Storyline</h2>
-					<p>Mae Holland (Emma Watson) seizes the opportunity of a lifetime when she lands a job with the world's most powerful technology and social media company. Encouraged by the company's founder (Tom Hanks), Mae joins a groundbreaking experiment that pushes the boundaries of privacy, ethics and personal freedom. Her participation in the experiment, and every decision she makes soon starts to affect the lives and futures of her friends, family and that of humanity.</p>
-				</div>
+					<p>{props.movieinfo.description}</p>
+                </div>
 
 				<div className="movie-details-section">
 					<h2>The Cast</h2>
@@ -134,13 +136,6 @@ Thor</a></h6>
 			</div>{/*<!-- close .dashboard-container -->*/}
             </>
         );
-    }else{
-        return (
-            <>
-            <p>not logged in</p>
-            </>
-        );
-    }
 
 };
 

@@ -55,11 +55,11 @@ const MovieProfile: React.FC = (props: any) => {
     return (
         <div id="sidebar-bg">
             <Header {...props}/>
-            <MovieProfileSidebar/>
+            <MovieProfileSidebar movieinfo={movieInfo}/>
             <main id="col-main-with-sidebar">
-                <MovieProfilePlayer/>
-                <MovieProfileRating/>
-                <MovieProfileDashboard/>
+                <MovieProfilePlayer movieinfo={movieInfo}/>
+                <MovieProfileRating movieinfo={movieInfo}/>
+                <MovieProfileDashboard movieinfo={movieInfo}/>
                 <Footer {...props}/>
             </main>
 

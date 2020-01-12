@@ -6,25 +6,22 @@ import {logout} from "../actions/auth";
 import $ from "jquery";
 import "jquery-asRange";
 
-const MovieProfileSidebar: React.FC = (props: any) => {
+interface MovieDetail{
+	movieinfo: any
+}
 
-    if (!props.isAuthenticated) {
-        return(
-            <>
-            <p>not logged in</p>
-            </>
-        );
-    } else {
+const MovieProfileSidebar: React.FC<MovieDetail> = (props: MovieDetail) => {
+
         return(
         <>
         <div id="content-sidebar-pro">
 			
 			<div id="content-sidebar-image">
-				<img src="http://via.placeholder.com/450x620" alt="Movie Poster" />
+				<img src={props.movieinfo.thumbnail_url} alt="Movie Poster" />
 			</div>
 			
 			<div className="content-sidebar-section">
-				<h2 className="content-sidebar-sub-header">True Blood</h2>
+				<h2 className="content-sidebar-sub-header">{props.movieinfo.title}</h2>
 				<ul className="progression-studios-slider-rating">
 					<li>PG-13</li><li>HD</li>
 				</ul>
@@ -128,7 +125,6 @@ const MovieProfileSidebar: React.FC = (props: any) => {
             </div>{/*<!-- close #content-sidebar-pro --></div>*/}
         </>
         );
-    }
 };
 const mapStateToProps = (state:any) => {
     return {

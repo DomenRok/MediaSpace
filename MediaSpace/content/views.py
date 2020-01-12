@@ -155,7 +155,7 @@ def recommend_for_user(request, username):
 def similiar_to(request, movie_id):
     """ returns similiar movies for the given movie_id. """
     paginator = PageNumberPagination()
-    paginator.page_size = 3
+    paginator.page_size = 4
 
     try:
         movie_ids = models.Similarity.objects.filter(movie_from_id=movie_id).values_list('movie_to_id', flat=True)

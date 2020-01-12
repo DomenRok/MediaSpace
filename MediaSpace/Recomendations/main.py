@@ -8,9 +8,10 @@ import MySQLdb as mysql
 class RecomendationService:
     def favouriteMovies(self, user):
 
-        df = DataUtils.return_dataframe(100)
+        n = 900
+        df = DataUtils.return_dataframe(n)
         print("Vrnena matrika")
-        uid = Recommend.UserItemData(df, 100)
+        uid = Recommend.UserItemData(df, n)
         print("Matrix read")
         preds = [SlopOne_Predictor.SlopOnePredictor]#, Cosine_Predictor.CosinePredictor]
         pred = random.choice(preds)()
@@ -83,7 +84,7 @@ class RecomendationService:
 
 
 
-#RecomendationService().favouriteMovies(71535)
+RecomendationService().favouriteMovies(71535)
 #RecomendationService().similarMoviesFillAll()
 
 

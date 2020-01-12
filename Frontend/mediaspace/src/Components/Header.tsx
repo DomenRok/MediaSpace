@@ -233,7 +233,7 @@ const Header: React.FC = (props: any) => {
                     {/* close #header-user-profile-click */}
                     <div id="header-user-profile-menu">
                         <ul>
-                            <li><a href="dashboard-profile.html"><span className="icon-User"></span>My Profile</a></li>
+                            <li><Link to="/profile"><span className="icon-User"></span>My Profile</Link></li>
                             <li><a href="dashboard-favorites.html"><span className="icon-Favorite-Window"></span>My
                                 Favorites</a></li>
                             <li><a href="dashboard-account.html"><span className="icon-Gears"></span>Account Details</a>

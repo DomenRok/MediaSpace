@@ -5,7 +5,7 @@ import Home from './Pages/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import {Dashboard} from "./Pages/Dashboard";
+import Dashboard from "./Pages/Dashboard";
 import thunk from "redux-thunk";
 import {auth} from "./actions";
 import mediaspace from "./reducers";

@@ -73,7 +73,7 @@ export const DashBoardSlider = (props: Props) => {
             if (slide.video.includes("youtube")) {
                 return (<>
                     <video id={"VideoLightbox-" + slide.id} width="960" height="540"
-                           data-vimeo-id={76979871}></video>
+                           data-youtube-id={slide.video}></video>
                     </>
                 )
             }
@@ -144,13 +144,10 @@ export const DashBoardSlider = (props: Props) => {
     });
 
     return (
-        <>
         <div className="flexslider progression-studios-dashboard-slider">
             <ul className="slides">
                 {slides}
             </ul>
         </div>
-            <GenreListIcons/>
-            </>
     );
 }

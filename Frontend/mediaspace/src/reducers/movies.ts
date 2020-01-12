@@ -1,6 +1,7 @@
 const initialState = {
     token: localStorage.getItem("token"),
-    movie: null,
+    movies: null,
+    genres: null,
     isAuthenticated: false,
     isLoading: true,
     user: null,
@@ -14,7 +15,10 @@ export default function auth(state=initialState, action: any) {
 
         case 'ADD_MOVIE':
         case 'FETCH_MOVIE':
-            return {...state, movie: action.movie};
+            return {...state, movies: action.data};
+
+        case 'FETCH_GENRES':
+            return {...state, genres: action.data};
 
         case 'UPDATE_MOVIE':
             return {...state, movie: action.movie, index: action.index};

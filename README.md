@@ -20,6 +20,18 @@ Recommendation system
 ...  
 
 ## Requirements
+Recommend a virtual enviorment (outside the project folder, so it won't get pushed to git)
+
+```python
+python -m venv env
+```
+
+To activate the virtual enviorment:  
+```python
+source env/Scripts/activate
+```
+
+Then install the dependencies and run the server. (instructions below)
 
 ```powershell
 (pyenv) PS C:\Users\Domen Brunček\Desktop\FRI\MediaSpace-folder\MediaSpace\MediaSpace> ls

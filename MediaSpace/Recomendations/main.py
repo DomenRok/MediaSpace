@@ -27,9 +27,9 @@ class RecomendationService:
             query = ("INSERT INTO content_recommendation(movie_id, person_id) VALUES (%s, %s)")
             cursor.execute(query, (user, rec_items[idmovie]))
 
-
-RecomendationService.favouriteMovies(71535)
-
+        mydb.commit()
+        cursor.close()
+        mydb.close()
 
 
 

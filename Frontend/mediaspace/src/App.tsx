@@ -11,7 +11,7 @@ import {auth} from "./actions";
 import mediaspace from "./reducers";
 import {applyMiddleware, createStore} from "redux";
 import {connect, Provider} from "react-redux";
-import {MovieProfile} from "./Pages/MovieProfile";
+import MovieProfile from "./Pages/MovieProfile";
 import {Profile} from "./Pages/Profile";
 
 let store = createStore(mediaspace, applyMiddleware(thunk));

@@ -1,6 +1,8 @@
 import React from "react";
 import MovieItem from "./MovieItem";
 import {Link} from "react-router-dom";
+import {movies} from "../actions";
+import {connect} from "react-redux";
 
 interface MovieList {
     movieList: any,
@@ -24,4 +26,21 @@ const ListMovies: React.FC<MovieList> = (props: MovieList) => {
         </>
     );
 };
-export default ListMovies;
+const mapStateToProps = (state: any) => {
+    return {
+        token: state.auth.token,
+        user: state.auth.user,
+        genres: state.movies.genres,
+        movies: state.movies.movies
+    };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        fetchMovies: (next = "") => {
+            return dispatch(movies.fetchMovies(next));
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListMovies);

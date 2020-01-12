@@ -27,6 +27,35 @@ export const getGenres = () => {
     };
 };
 
+export const recommended = () => {
+    return (dispatch: any, getState: any) => {
+        let headers = {"Content-Type": "application/json"} as any;
+        let token =  localStorage.getItem("mediaspacetoken");
+        if (token) {
+            headers["Authorization"] = `Token ${token}`;
+        }
+        fetch("http://localhost:8000/api/v1/content/recommend/" + getState().auth.user, {headers,})
+            .then(res => {
+                if (res.status < 500) {
+                    return res.json().then(data => {
+                        return {status: res.status, data};
+                    })
+                } else {
+                    console.log("Server Error!");
+                    throw res;
+                }
+            })
+            .then(res => {
+                if (res.status === 200) {
+                    dispatch({type: 'GET_RECOMMENDED', data: res.data });
+                } else if (res.status === 401 || res.status === 403) {
+                    throw new Error(res.data);
+                }
+            });
+
+    }
+}
+
 export const fetchMovies = (next = "") => {
     return (dispatch: any, getState: any) => {
         let headers = {"Content-Type": "application/json"} as any;
@@ -48,6 +77,7 @@ export const fetchMovies = (next = "") => {
             })
             .then(res => {
                 if (res.status === 200) {
+                    if (next !== "http://localhost:8000/api/v1/content/movie") return dispatch({type: 'FETCH_NEW', data: res.data});
                     return dispatch({type: 'FETCH_MOVIE', data: res.data});
                 } else if (res.status === 401 || res.status === 403) {
                     dispatch({type: "AUTHENTICATION_ERROR", data: res.data});

@@ -8,9 +8,7 @@ import "jquery-asRange";
 
 
 const MovieProfilePlayer: React.FC = (props: any) => {
-
-    if (props.isAuthenticated) {
-        return (
+ 	return (
             <>
             <div id="movie-detail-header-pro" className="placeholderImage">
 				
@@ -71,19 +69,7 @@ const MovieProfilePlayer: React.FC = (props: any) => {
 			</div>{/*<!-- close #movie-detail-header-pro -->*/}
             </>
         );
-    }else{
-        return (
-            <>
-            <p>not logged in</p>
-            </>
-        );
-    }
 
 };
 
-const mapStateToProps = (state:any) => {
-    return {
-        isAuthenticated: state.auth.isAuthenticated
-    };
-}
-export default connect(mapStateToProps,null)(MovieProfilePlayer);
+export default MovieProfilePlayer;

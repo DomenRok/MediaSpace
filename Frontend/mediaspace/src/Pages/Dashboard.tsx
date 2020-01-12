@@ -12,45 +12,18 @@ import ListMovies from "../Components/ListMovies";
 import {Link} from "react-router-dom";
 
 const Dashboard: React.FC = (props: any) => {
-    const [recommended, setRecommended] = useState({results: []});
-    const [movieLists, setMovieLists] = useState([]);
-
     useEffect(() => {
-        props.getGenres();
-        props.fetchMovies();
-    }, []);
-
-    useEffect(() => {
-        if (props.movies !== movieLists) setMovieLists(movieLists.concat(props.movies));
-        if (props.user) {
-            let headers = {"Content-Type": "application/json"} as any;
-            let {token} = props;
-            if (token) {
-                headers["Authorization"] = `Token ${token}`;
-            }
-            fetch("http://localhost:8000/api/v1/content/recommend/"+props.user, {headers, })
-                .then(res => {
-                    if (res.status < 500) {
-                        return res.json().then(data => {
-                            return {status: res.status, data};
-                        })
-                    } else {
-                        console.log("Server Error!");
-                        throw res;
-                    }
-                })
-                .then(res => {
-                    if (res.status === 200) {
-                        setRecommended(res.data);
-                    } else if (res.status === 401 || res.status === 403) {
-                        throw new Error("Error: "+res.data);
-                    }
-                });
+        if (props.token) {
+            props.getGenres();
+            props.recommend();
+            props.fetchMovies();
         }
-    }, [props.movies, props.user]);
-    if (!props.movies || recommended.results.length === 0) return null;
+    }, [props.token]);
 
-    const recommendedSlider = recommended.results.slice(0,3).map((movie: any) => {
+    if (!props.movies) return null;
+    if (!props.recommended) return null;
+
+    const recommendedSlider = props.recommended.results.slice(0, 3).map((movie: any) => {
         return {
             title: movie.title,
             bgImage: movie.thumbnail_url,
@@ -61,25 +34,25 @@ const Dashboard: React.FC = (props: any) => {
             video: movie.link
         }
     });
+    if (recommendedSlider.length !== 3) return null;
 
-    let listMovies = movieLists.map((movies: any) => <ListMovies movieList={movies} title={"Other"}/>);
-    const recommendedList = [<ListMovies movieList={recommended} title={"Recommended for you"}/>];
-    listMovies = [...recommendedList, ...listMovies];
+    let listMovies = props.movies.map((movies: any) => <ListMovies movieList={movies} title={"Other"}/>);
+   /* const recommendedList = [<ListMovies movieList={props.recommended} title={"Recommended for you"}/>];*/
+    //listMovies = [...recommendedList, ...listMovies];
 
     const loadMore = (e: any) => {
         e.preventDefault();
         props.fetchMovies(props.movies.next);
     };
-
     return (
         <div id="sidebar-bg">
             <Header {...props}/>
             <main id="col-main">
-            <DashBoardSlider slides={recommendedSlider}/>
-            <GenreListIcons genreList={props.genres}/>
-            <div className="clearfix"></div>
+                <DashBoardSlider slides={recommendedSlider}/>
+                <GenreListIcons genreList={props.genres}/>
+                <div className="clearfix"></div>
                 <div className="dashboard-container">
-                {listMovies}
+                    {listMovies}
                     <ul className="page-numbers">
                         <li>
                             <Link className="previous page-numbers" to="#!" onClick={loadMore}>
@@ -93,17 +66,21 @@ const Dashboard: React.FC = (props: any) => {
     );
 };
 
-const mapStateToProps = (state:any) => {
+const mapStateToProps = (state: any) => {
     return {
         token: state.auth.token,
         user: state.auth.user,
         genres: state.movies.genres,
-        movies: state.movies.movies
+        movies: state.movies.movies,
+        recommended: state.movies.recommended
     };
 };
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
+        recommend: () => {
+            return dispatch(movies.recommended());
+        },
         fetchMovies: (next = "") => {
             return dispatch(movies.fetchMovies(next));
         },
@@ -113,4 +90,4 @@ const mapDispatchToProps = (dispatch: any) => {
     };
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Dashboard)
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

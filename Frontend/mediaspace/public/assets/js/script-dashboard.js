@@ -16,9 +16,7 @@ jQuery(document).ready(function($) {
 /*
 =============================================== 01. FLEXSLIDER DASHBOARD SLIDER  ===============================================
 */
-	 
-
-/*
+/*PARENT KOMPONENTA MOVIE PROFILE
 =============================================== 02. Video App Header On/Off Clickable Items  ===============================================
 */
 	
